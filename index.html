@@ -180,6 +180,7 @@
             outline: none;
             flex: 1;
             margin-left: 0.5rem;
+            caret-color: #22c55e;
         }
         
         .terminal-input::placeholder {
@@ -192,15 +193,6 @@
             }
         }
         
-        .cursor {
-            color: #22c55e;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
         
         .tip {
             color: #6b7280;
@@ -350,7 +342,6 @@
                     <div class="input-line">
                         <span class="prompt">$ </span>
                         <input type="text" class="terminal-input" id="gameInput" placeholder="Опишите вашу идею игры..." />
-                        <span class="cursor" id="gameCursor">|</span>
                     </div>
                 </div>
                 
@@ -360,7 +351,6 @@
                     <div class="input-line" id="emailInputLine" style="margin-top: 0.5rem;">
                         <span class="terminal-text">email: </span>
                         <input type="email" class="terminal-input" id="terminalEmail" placeholder="your@email.com" />
-                        <span class="cursor" id="emailCursor">|</span>
                     </div>
                     <div class="action-buttons" id="actionButtons" style="margin-top: 1rem;">
                         <span class="action-button-submit">Отправить [Enter]</span>
@@ -434,15 +424,6 @@
             }
         });
         
-        // Handle input changes to hide/show cursor
-        document.getElementById('gameInput').addEventListener('input', function() {
-            const cursor = document.getElementById('gameCursor');
-            if (this.value.length > 0) {
-                cursor.style.display = 'none';
-            } else {
-                cursor.style.display = 'inline';
-            }
-        });
         
         // Handle email input
         document.getElementById('terminalEmail').addEventListener('keypress', function(e) {
@@ -464,15 +445,6 @@
             }
         });
         
-        // Handle email input changes to hide/show cursor
-        document.getElementById('terminalEmail').addEventListener('input', function() {
-            const cursor = document.getElementById('emailCursor');
-            if (this.value.length > 0) {
-                cursor.style.display = 'none';
-            } else {
-                cursor.style.display = 'inline';
-            }
-        });
         
         // Handle Escape key globally
         document.addEventListener('keydown', function(e) {
@@ -496,9 +468,6 @@
             document.getElementById('terminalEmail').disabled = false;
             document.getElementById('terminalEmail').value = '';
             
-            // Show cursors
-            document.getElementById('gameCursor').style.display = 'inline';
-            document.getElementById('emailCursor').style.display = 'inline';
             
             // Show tip and focus game input
             document.getElementById('terminalTip').style.display = 'block';
