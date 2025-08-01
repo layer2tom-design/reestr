@@ -193,6 +193,18 @@
             }
         }
         
+        .placeholder-text {
+            color: #6b7280;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 14px;
+        }
+        
+        @media (min-width: 768px) {
+            .placeholder-text {
+                font-size: 16px;
+            }
+        }
+        
         .cursor {
             color: #22c55e;
             animation: blink 1s infinite;
@@ -351,8 +363,9 @@
                 <div id="gameInputLine">
                     <div class="input-line">
                         <span class="prompt">$ </span>
+                        <span class="placeholder-text" id="placeholderText">Опишите вашу идею игры...</span>
                         <span class="cursor" id="gameCursor">|</span>
-                        <input type="text" class="terminal-input" id="gameInput" placeholder="" style="display: none;" />
+                        <input type="text" class="terminal-input" id="gameInput" placeholder="Опишите вашу идею игры..." style="display: none;" />
                     </div>
                 </div>
                 
@@ -480,7 +493,8 @@
             document.getElementById('terminalEmail').disabled = false;
             document.getElementById('terminalEmail').value = '';
             
-            // Show cursor
+            // Show cursor and placeholder
+            document.getElementById('placeholderText').style.display = 'inline';
             document.getElementById('gameCursor').style.display = 'inline';
             
             // Show tip
@@ -523,9 +537,9 @@
         // Show game input function
         function showGameInput() {
             document.getElementById('gameCursor').style.display = 'none';
+            document.getElementById('placeholderText').style.display = 'none';
             const input = document.getElementById('gameInput');
             input.style.display = 'block';
-            input.placeholder = 'Опишите вашу идею игры...';
             input.focus();
         }
         
@@ -534,6 +548,7 @@
             const input = document.getElementById('gameInput');
             if (input.value.trim() === '') {
                 input.style.display = 'none';
+                document.getElementById('placeholderText').style.display = 'inline';
                 document.getElementById('gameCursor').style.display = 'inline';
             }
         }
