@@ -23,10 +23,11 @@
             --space-10: 5rem;    /* 80px */
             --space-12: 6rem;    /* 96px */
             --space-16: 8rem;    /* 128px */
+            --space-20: 10rem;   /* 160px */
         }
         
         body {
-            background: #f8fafc;
+            background: #ffffff;
             color: #374151;
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             min-height: 100vh;
@@ -52,24 +53,24 @@
         }
         
         .header h1 {
-            font-family: Arial, sans-serif;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
             font-weight: bold;
             color: #1e3a8a;
-            font-size: 1.875rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+            font-size: 2.25rem;
+            letter-spacing: 0.1em;
+            margin: 0;
         }
         
         @media (min-width: 768px) {
             .header h1 {
-                font-size: 2.25rem;
+                font-size: 2.5rem;
             }
         }
         
         /* Main Title */
         .main-title {
             text-align: center;
-            margin: var(--space-8) 0 var(--space-6);
+            margin: var(--space-6) 0 var(--space-4);
         }
         
         .gradient-text {
@@ -77,6 +78,15 @@
             font-weight: bold;
             color: #1e3a8a;
             line-height: 1.2;
+            margin-bottom: var(--space-2);
+        }
+        
+        .subtitle-main {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #d97706;
+            line-height: 1.3;
+            margin-bottom: var(--space-4);
         }
         
         .subtitle {
@@ -179,7 +189,7 @@
             font-size: 14px;
             outline: none;
             flex: 1;
-            margin-left: var(--space-1);
+            margin-left: 0.5rem;
             caret-color: #d97706;
             width: 100%;
         }
@@ -257,6 +267,111 @@
         .action-button-cancel:hover {
             color: #dc2626;
         }
+        /* Why Choose Us Section */
+        .why-choose-us-section {
+            background: #f9fafb;
+            padding: var(--space-6) 0;
+            margin: 0;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .why-choose-us {
+            margin: 0 auto;
+            max-width: 1024px;
+        }
+        
+        .why-choose-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: var(--space-6);
+            line-height: 1.2;
+        }
+        
+        .why-choose-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-6);
+            margin-top: var(--space-6);
+        }
+        
+        .why-choose-card {
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: var(--space-5);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .why-choose-card:hover {
+            border-color: #d97706;
+            box-shadow: 0 12px 28px rgba(217, 119, 6, 0.15);
+            transform: translateY(-4px);
+        }
+        
+        .why-choose-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #d97706 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-3);
+            box-shadow: 0 4px 8px rgba(30, 58, 138, 0.2);
+        }
+        
+        .why-choose-card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+        
+        .why-choose-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: var(--space-2);
+            line-height: 1.3;
+        }
+        
+        .why-choose-card-stat {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #d97706;
+            margin-bottom: var(--space-1);
+            line-height: 1;
+        }
+        
+        .why-choose-card-desc {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-width: 260px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .why-choose-title {
+                font-size: 2rem;
+            }
+            
+            .why-choose-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+            
+            .why-choose-card {
+                padding: var(--space-4);
+            }
+            
+            .why-choose-card-stat {
+                font-size: 1.875rem;
+            }
+        }
         
         
         /* Section divider */
@@ -267,105 +382,106 @@
             margin: var(--space-8) 0;
         }
         
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-3);
-            margin: var(--space-8) auto;
-            max-width: 1024px;
-            position: relative;
-        }
-        
-        .features::before {
-            content: '';
-            position: absolute;
-            top: calc(-1 * var(--space-4));
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #1e3a8a 0%, #d97706 100%);
-            border-radius: 2px;
-        }
-        
-        .feature-card {
+        /* Features Section */
+        .features-section {
             background: #ffffff;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: var(--space-4);
+            padding: var(--space-8) 0;
+            margin: 0;
+        }
+        
+        .features-modern {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
+            gap: var(--space-4);
+        }
+        
+        .step-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
             align-items: center;
-            text-align: center;
-            opacity: 0;
-            animation: slideUp 0.6s ease-out forwards;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: var(--space-8) var(--space-20);
+            background: #f8fafc;
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            margin: 0 calc(-1 * var(--space-16));
         }
         
-        .feature-card:hover {
-            border-color: #d97706;
-            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.1);
-            transform: translateY(-2px);
+        .step-card.reverse {
+            grid-template-columns: 1fr 1fr;
         }
         
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.3s; }
-        .feature-card:nth-child(3) { animation-delay: 0.5s; }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .step-card.reverse .step-content {
+            order: 2;
         }
         
-        .feature-icon {
-            width: 48px;
-            height: 48px;
+        .step-card.reverse .step-visual {
+            order: 1;
+        }
+        
+        .step-content {
+            padding: var(--space-4);
+        }
+        
+        .step-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: var(--space-4);
+            line-height: 1.2;
+        }
+        
+        .step-description {
+            font-size: 1.125rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        .step-visual {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #1e3a8a 0%, #d97706 100%);
-            border-radius: 12px;
-            margin-bottom: var(--space-3);
-            position: relative;
-            box-shadow: 0 4px 8px rgba(30, 58, 138, 0.2);
+            min-height: 300px;
         }
         
-        .feature-icon svg {
-            width: 24px;
-            height: 24px;
-            fill: white;
-        }
-        
-        .feature-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: var(--space-2);
-            color: #1e3a8a;
-            line-height: 1.4;
-        }
-        
-        .feature-desc {
-            color: #6b7280;
-            font-size: 0.875rem;
-            line-height: 1.6;
+        @media (max-width: 768px) {
+            .step-card {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+                padding: var(--space-4) var(--space-8);
+                margin: 0 calc(-1 * var(--space-6));
+            }
+            
+            .step-card.reverse .step-content {
+                order: 1;
+            }
+            
+            .step-card.reverse .step-visual {
+                order: 2;
+            }
+            
+            .step-title {
+                font-size: 1.5rem;
+            }
+            
+            .step-description {
+                font-size: 1rem;
+            }
         }
         
         
         /* Footer */
         .footer {
+            background: #f9fafb;
+            color: #374151;
             text-align: center;
             padding: var(--space-6) 0;
+            margin: 0;
             border-top: 1px solid #e5e7eb;
-            color: #6b7280;
-            margin-top: var(--space-8);
         }
         
         /* Responsive */
@@ -373,6 +489,11 @@
             .gradient-text {
                 font-size: 2.5rem;
             }
+            
+            .subtitle-main {
+                font-size: 1.875rem;
+            }
+            
         }
     </style>
 </head>
@@ -380,47 +501,222 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>ENGINE ARCADE</h1>
+            <h1>LexCloud</h1>
         </header>
         
         <!-- Main Title -->
         <div class="main-title">
-            <h1 class="gradient-text">Create Games With Just a Prompt</h1>
-            <p class="subtitle">Type a prompt, get a playable game instantly. No coding required.</p>
+            <h1 class="gradient-text">Регистрация программы для ЭВМ в Реестре российского программного обеспечения Минцифры</h1>
+            <p class="subtitle">Опыт регистрации программного обеспечения в Реестре Минцифры с 2021 года</p>
         </div>
         
-        <!-- Features -->
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="features-modern">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-content">
+                            <h3 class="step-title">Управление задачами</h3>
+                            <p class="step-description">Используйте листы задач, расписание команды и календарь. Добавляйте файлы, комментарии и делитесь своими разработками с командой.</p>
+                        </div>
+                        <div class="step-visual">
+                            <svg viewBox="0 0 400 300" width="100%" height="100%">
+                                <!-- Background -->
+                                <rect width="400" height="300" fill="#f8fafc"/>
+                                
+                                <!-- Task cards -->
+                                <g transform="translate(40, 30)">
+                                    <!-- Card 1 -->
+                                    <rect x="0" y="0" width="100" height="80" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+                                    <line x1="15" y1="20" x2="85" y2="20" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="15" y1="35" x2="70" y2="35" stroke="#f87171" stroke-width="2"/>
+                                    <line x1="15" y1="50" x2="75" y2="50" stroke="#e2e8f0" stroke-width="2"/>
+                                    <line x1="15" y1="65" x2="60" y2="65" stroke="#e2e8f0" stroke-width="2"/>
+                                    
+                                    <!-- Card 2 -->
+                                    <rect x="120" y="10" width="100" height="80" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+                                    <line x1="135" y1="30" x2="205" y2="30" stroke="#f87171" stroke-width="3"/>
+                                    <line x1="135" y1="45" x2="190" y2="45" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="135" y1="60" x2="185" y2="60" stroke="#e2e8f0" stroke-width="2"/>
+                                    <line x1="135" y1="75" x2="170" y2="75" stroke="#e2e8f0" stroke-width="2"/>
+                                    
+                                    <!-- Card 3 -->
+                                    <rect x="240" y="20" width="100" height="80" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+                                    <line x1="255" y1="40" x2="325" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="255" y1="55" x2="310" y2="55" stroke="#e2e8f0" stroke-width="2"/>
+                                    <line x1="255" y1="70" x2="305" y2="70" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="255" y1="85" x2="290" y2="85" stroke="#e2e8f0" stroke-width="2"/>
+                                </g>
+                                
+                                <!-- Icons at bottom -->
+                                <g transform="translate(40, 150)">
+                                    <circle cx="20" cy="20" r="15" fill="#3b82f6"/>
+                                    <path d="M13 20 L18 25 L27 15" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                </g>
+                                
+                                <g transform="translate(100, 150)">
+                                    <rect x="5" y="10" width="30" height="20" rx="3" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="8" y1="16" x2="32" y2="16" stroke="#3b82f6" stroke-width="1"/>
+                                    <line x1="8" y1="20" x2="28" y2="20" stroke="#3b82f6" stroke-width="1"/>
+                                    <line x1="8" y1="24" x2="32" y2="24" stroke="#3b82f6" stroke-width="1"/>
+                                </g>
+                                
+                                <g transform="translate(160, 150)">
+                                    <circle cx="20" cy="10" r="8" fill="none" stroke="#f87171" stroke-width="2"/>
+                                    <line x1="20" y1="25" x2="20" y2="35" stroke="#f87171" stroke-width="2"/>
+                                    <circle cx="20" cy="40" r="3" fill="#f87171"/>
+                                </g>
+                                
+                                <g transform="translate(220, 150)">
+                                    <circle cx="15" cy="15" r="6" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                    <circle cx="35" cy="15" r="6" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="21" y1="15" x2="29" y2="15" stroke="#3b82f6" stroke-width="2"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="step-card reverse">
+                        <div class="step-visual">
+                            <svg viewBox="0 0 400 300" width="100%" height="100%">
+                                <!-- Background -->
+                                <rect width="400" height="300" fill="#f8fafc"/>
+                                
+                                <!-- Timeline visualization -->
+                                <g transform="translate(50, 100)">
+                                    <!-- Progress bar background -->
+                                    <rect x="0" y="40" width="300" height="8" rx="4" fill="#e2e8f0"/>
+                                    <!-- Progress bar filled parts -->
+                                    <rect x="0" y="40" width="80" height="8" rx="4" fill="#f87171"/>
+                                    <rect x="100" y="40" width="120" height="8" rx="4" fill="#3b82f6"/>
+                                    <rect x="240" y="40" width="60" height="8" rx="4" fill="#f87171"/>
+                                    
+                                    <!-- Active indicator -->
+                                    <circle cx="180" cy="20" r="8" fill="#3b82f6"/>
+                                    <line x1="180" y1="28" x2="180" y2="40" stroke="#3b82f6" stroke-width="2"/>
+                                </g>
+                                
+                                <!-- Time tracking elements -->
+                                <g transform="translate(80, 180)">
+                                    <rect x="0" y="0" width="60" height="30" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+                                    <line x1="10" y1="10" x2="50" y2="10" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="10" y1="20" x2="40" y2="20" stroke="#e2e8f0" stroke-width="1"/>
+                                    
+                                    <rect x="80" y="0" width="60" height="30" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+                                    <line x1="90" y1="10" x2="130" y2="10" stroke="#f87171" stroke-width="2"/>
+                                    <line x1="90" y1="20" x2="120" y2="20" stroke="#e2e8f0" stroke-width="1"/>
+                                    
+                                    <rect x="160" y="0" width="60" height="30" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+                                    <line x1="170" y1="10" x2="210" y2="10" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="170" y1="20" x2="200" y2="20" stroke="#e2e8f0" stroke-width="1"/>
+                                </g>
+                                
+                                <!-- Circular progress -->
+                                <g transform="translate(280, 160)">
+                                    <circle cx="40" cy="40" r="30" fill="none" stroke="#e2e8f0" stroke-width="6"/>
+                                    <circle cx="40" cy="40" r="30" fill="none" stroke="#f87171" stroke-width="6" 
+                                            stroke-dasharray="94.2" stroke-dashoffset="31.4" transform="rotate(-90 40 40)"/>
+                                    <circle cx="40" cy="40" r="30" fill="none" stroke="#3b82f6" stroke-width="6" 
+                                            stroke-dasharray="94.2" stroke-dashoffset="70.6" transform="rotate(-90 40 40)"/>
+                                </g>
+                                
+                                <!-- Icons -->
+                                <g transform="translate(50, 250)">
+                                    <rect x="0" y="0" width="20" height="15" rx="2" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="3" y1="5" x2="17" y2="5" stroke="#3b82f6" stroke-width="1"/>
+                                    <line x1="3" y1="8" x2="15" y2="8" stroke="#3b82f6" stroke-width="1"/>
+                                    <line x1="3" y1="11" x2="13" y2="11" stroke="#3b82f6" stroke-width="1"/>
+                                </g>
+                                
+                                <g transform="translate(90, 250)">
+                                    <circle cx="10" cy="10" r="8" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="10" y1="6" x2="10" y2="10" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="10" y1="10" x2="13" y2="13" stroke="#3b82f6" stroke-width="2"/>
+                                </g>
+                                
+                                <g transform="translate(130, 250)">
+                                    <circle cx="8" cy="8" r="4" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                    <circle cx="18" cy="8" r="4" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="12" y1="8" x2="14" y2="8" stroke="#3b82f6" stroke-width="2"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">Управление временем</h3>
+                            <p class="step-description">Следите за задачами, над которыми вы ежедневно работаете и анализируйте, сколько времени вы потратили на каждый проект. Вы можете использовать автоматический таймер или управлять им вручную.</p>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="feature-title">Chat to Create</h3>
-                <p class="feature-desc">Simply describe your game idea in natural language and watch it come to life</p>
             </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 2v20M14 2v20M4 7h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
+        </section>
+        
+        <!-- Why Choose Us Section -->
+        <section class="why-choose-us-section">
+            <div class="container">
+                <div class="why-choose-us">
+                    <h2 class="why-choose-title">Почему выбирают нас</h2>
+                    
+                    <div class="why-choose-grid">
+                        <div class="why-choose-card">
+                            <div class="why-choose-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L13.09 8.26L20 7L18.74 14.74L21 16L14.74 17.26L16 21L8.26 19.91L7 21L5.26 14.74L2 13L8.26 11.74L7 2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="why-choose-card-stat">7 лет</div>
+                            <h3 class="why-choose-card-title">Экспертиза в IT-праве</h3>
+                            <p class="why-choose-card-desc">
+                                Специализируемся на юридическом сопровождении IT-компаний с 2018 года
+                            </p>
+                        </div>
+                        
+                        <div class="why-choose-card">
+                            <div class="why-choose-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="why-choose-card-stat">4 года</div>
+                            <h3 class="why-choose-card-title">Опыт</h3>
+                            <p class="why-choose-card-desc">
+                                Опыт регистрации программ для ЭВМ в Реестре российского программного обеспечения с 2021 года
+                            </p>
+                        </div>
+                        
+                        <div class="why-choose-card">
+                            <div class="why-choose-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="why-choose-card-stat">95%</div>
+                            <h3 class="why-choose-card-title">Высокий процент успеха</h3>
+                            <p class="why-choose-card-desc">
+                                Клиентов успешно получают аккредитацию с первой подачи
+                            </p>
+                        </div>
+                        
+                        <div class="why-choose-card">
+                            <div class="why-choose-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                    <polyline points="12,6 12,12 16,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="why-choose-card-title">Соблюдение сроков</h3>
+                            <p class="why-choose-card-desc">
+                                Четко планируем работу и регулярно информируем о ходе процедур
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="feature-title">No Coding Required</h3>
-                <p class="feature-desc">Create complex games without writing a single line of code</p>
             </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="5,3 19,12 5,21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <h3 class="feature-title">Instantly Playable</h3>
-                <p class="feature-desc">Get a working game in seconds that you can play and share immediately</p>
-            </div>
-        </div>
+        </section>
         
         <!-- Section divider -->
         <div class="section-divider"></div>
@@ -431,32 +727,29 @@
                 <div class="terminal-button close-button"></div>
                 <div class="terminal-button minimize-button"></div>
                 <div class="terminal-button maximize-button"></div>
-                <div class="terminal-title">engine-arcade-terminal</div>
+                <div class="terminal-title">lex-claude-terminal</div>
             </div>
             
             <div class="terminal-content">
                 <div class="terminal-line">
-                    <div class="welcome">$ Добро пожаловать в Engine Arcade Terminal!</div>
-                    <div class="normal-text" style="margin-top: var(--space-1);">Напишите нам сообщение о том, какую игру хотите создать:</div>
+                    <div class="welcome">$ Добро пожаловать в LexClaude!</div>
+                    <div class="normal-text" style="margin-top: var(--space-1);">Заполните форму ниже, и мы свяжемся с вами:</div>
                 </div>
                 
-                <div id="gameInputLine">
-                    <div class="input-line">
-                        <span class="prompt">$ </span>
-                        <input type="text" class="terminal-input" id="gameInput" placeholder="Опишите вашу идею игры..." autofocus />
+                <div id="expandedForm">
+                    <div class="input-line" style="margin-bottom: var(--space-3);">
+                        <span class="prompt">сообщение: </span>
+                        <input type="text" class="terminal-input" id="gameInput" placeholder="Напишите нам..." />
                     </div>
-                </div>
-                
-                <div id="gameIdeaDisplay" style="display: none;">
-                    <div class="terminal-input-echo" id="gameIdeaEcho" style="margin-bottom: var(--space-2);"></div>
-                    <div class="welcome" id="emailPrompt">Отлично! Теперь введите ваш email для связи:</div>
-                    <div class="input-line" id="emailInputLine" style="margin-top: var(--space-1);">
+                    
+                    <div class="input-line" style="margin-bottom: var(--space-3);">
                         <span class="terminal-text">email: </span>
                         <input type="email" class="terminal-input" id="terminalEmail" placeholder="your@email.com" />
                     </div>
-                    <div class="action-buttons" id="actionButtons" style="margin-top: var(--space-2);">
-                        <span class="action-button-submit">Отправить [Enter]</span>
-                        <span class="action-button-cancel">Отмена [Esc]</span>
+                    
+                    <div class="action-buttons">
+                        <span class="action-button-submit" id="submitButton">Отправить [Enter]</span>
+                        <span class="action-button-cancel" id="cancelButton">Очистить [Esc]</span>
                     </div>
                 </div>
                 
@@ -466,7 +759,7 @@
                 </div>
                 
                 <div class="tip" id="terminalTip">
-                    Tip: Нажмите в любом месте терминала для ввода текста
+                    Tip: Заполните оба поля и нажмите "Отправить"
                 </div>
             </div>
         </div>
@@ -474,7 +767,7 @@
         
         <!-- Footer -->
         <footer class="footer">
-            <p>© 2025 Engine Arcade. All rights reserved.</p>
+            <p>© 2021 LexClaude. Все права защищены.</p>
         </footer>
     </div>
     
@@ -484,76 +777,74 @@
         emailjs.init("YOUR_PUBLIC_KEY");
         
         
-        // Terminal interaction logic
+        // Terminal interaction logic - expanded form version
         let gameIdea = '';
-        let currentStep = 'game'; // 'game' -> 'email' -> 'complete'
+        let userEmail = '';
         
-        // Handle game input
-        document.getElementById('gameInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && this.value.trim()) {
-                gameIdea = this.value.trim();
-                this.disabled = true;
-                
-                // Hide game input line and cursor
-                document.getElementById('gameInputLine').style.display = 'none';
-                
-                // Show entered game idea and email form
-                document.getElementById('gameIdeaEcho').textContent = '$ ' + gameIdea;
-                document.getElementById('gameIdeaDisplay').style.display = 'block';
-                document.getElementById('terminalEmail').focus();
-                currentStep = 'email';
+        // Handle Enter key on both inputs (only Enter, allow all other keys)
+        document.getElementById('gameInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submitForm();
             }
+            // All other keys work normally
         });
         
-        
-        // Handle email input
-        document.getElementById('terminalEmail').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && this.value.trim()) {
-                const email = this.value.trim();
-                this.disabled = true;
-                
-                // Hide game idea display and show thank you message
-                document.getElementById('gameIdeaDisplay').style.display = 'none';
-                document.getElementById('thankYouMessage').style.display = 'block';
-                document.getElementById('terminalTip').style.display = 'none';
-                
-                // Send email via EmailJS (if configured)
-                sendTerminalEmail(gameIdea, email);
-                currentStep = 'complete';
-            } else if (e.key === 'Escape') {
-                // Reset terminal
-                resetTerminal();
+        document.getElementById('terminalEmail').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submitForm();
             }
+            // All other keys work normally
         });
         
+        // Handle submit button click
+        document.getElementById('submitButton').addEventListener('click', function() {
+            submitForm();
+        });
+        
+        // Handle cancel/clear button
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            clearForm();
+        });
         
         // Handle Escape key globally
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && currentStep === 'email') {
-                resetTerminal();
+            if (e.key === 'Escape') {
+                clearForm();
             }
         });
         
-        // Reset terminal function
-        function resetTerminal() {
-            // Hide dynamic elements
-            document.getElementById('gameIdeaDisplay').style.display = 'none';
-            document.getElementById('thankYouMessage').style.display = 'none';
+        // Submit form function
+        function submitForm() {
+            gameIdea = document.getElementById('gameInput').value.trim();
+            userEmail = document.getElementById('terminalEmail').value.trim();
             
-            // Show game input line
-            document.getElementById('gameInputLine').style.display = 'block';
+            if (!gameIdea || !userEmail) {
+                // Basic validation - could add visual feedback here
+                if (!gameIdea) document.getElementById('gameInput').focus();
+                else if (!userEmail) document.getElementById('terminalEmail').focus();
+                return;
+            }
             
-            // Reset inputs
-            document.getElementById('gameInput').disabled = false;
+            // Disable inputs
+            document.getElementById('gameInput').disabled = true;
+            document.getElementById('terminalEmail').disabled = true;
+            
+            // Hide form and show thank you message
+            document.getElementById('expandedForm').style.display = 'none';
+            document.getElementById('thankYouMessage').style.display = 'block';
+            document.getElementById('terminalTip').style.display = 'none';
+            
+            // Send email via EmailJS (if configured)
+            sendTerminalEmail(gameIdea, userEmail);
+        }
+        
+        // Clear form function
+        function clearForm() {
             document.getElementById('gameInput').value = '';
-            document.getElementById('terminalEmail').disabled = false;
             document.getElementById('terminalEmail').value = '';
-            
-            // Show tip
-            document.getElementById('terminalTip').style.display = 'block';
-            
-            currentStep = 'game';
-            gameIdea = '';
+            document.getElementById('gameInput').focus();
         }
         
         // Send email function
@@ -577,14 +868,24 @@
             }
         }
         
-        // Focus terminal input when clicking on terminal
-        document.querySelector('.terminal').addEventListener('click', function() {
-            if (currentStep === 'game') {
-                document.getElementById('gameInput').focus();
-            } else if (currentStep === 'email') {
-                document.getElementById('terminalEmail').focus();
+        // Focus terminal input when clicking on terminal (but not on inputs themselves)
+        document.querySelector('.terminal').addEventListener('click', function(e) {
+            // Only focus if clicked on terminal background, not on inputs
+            if (e.target === this || e.target.classList.contains('terminal-content') || 
+                e.target.classList.contains('terminal-line') || e.target.classList.contains('normal-text') ||
+                e.target.classList.contains('welcome')) {
+                
+                // Focus on first empty field or game input by default
+                if (!document.getElementById('gameInput').value.trim()) {
+                    document.getElementById('gameInput').focus();
+                } else if (!document.getElementById('terminalEmail').value.trim()) {
+                    document.getElementById('terminalEmail').focus();
+                } else {
+                    document.getElementById('gameInput').focus();
+                }
             }
         });
+        
     </script>
 </body>
 </html>
