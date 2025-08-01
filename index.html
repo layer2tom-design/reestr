@@ -197,6 +197,7 @@
             color: #6b7280;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 14px;
+            margin-left: 0.5rem;
         }
         
         @media (min-width: 768px) {
@@ -208,7 +209,6 @@
         .cursor {
             color: #22c55e;
             animation: blink 1s infinite;
-            margin-left: 0.2rem;
         }
         
         @keyframes blink {
@@ -316,6 +316,177 @@
             line-height: 1.6;
         }
         
+        /* Pricing */
+        .pricing {
+            max-width: 1024px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+        
+        .pricing-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-subtitle {
+            text-align: center;
+            color: #9ca3af;
+            margin-bottom: 3rem;
+        }
+        
+        .pricing-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .pricing-left {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-right {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .package-option {
+            background: #111827;
+            border: 2px solid #374151;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+        }
+        
+        .package-option:hover {
+            border-color: #8b5cf6;
+        }
+        
+        .package-option.selected {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.1);
+        }
+        
+        .package-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .package-icon.quality { background: linear-gradient(135deg, #ec4899, #f97316); }
+        .package-icon.fast { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+        
+        .package-content {
+            flex: 1;
+        }
+        
+        .package-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+        
+        .package-description {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        
+        .package-toggle {
+            width: 50px;
+            height: 28px;
+            background: #374151;
+            border-radius: 14px;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .package-toggle.active {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+        
+        .package-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        .package-toggle.active::after {
+            transform: translateX(22px);
+        }
+        
+        .pricing-summary {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-period {
+            color: #9ca3af;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #d1d5db;
+            font-size: 0.875rem;
+        }
+        
+        .pricing-feature-icon {
+            width: 20px;
+            height: 20px;
+            color: #22c55e;
+        }
+        
+        
+        @media (max-width: 768px) {
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-amount {
+                font-size: 2.5rem;
+            }
+        }
+        
         /* Footer */
         .footer {
             text-align: center;
@@ -362,7 +533,7 @@
                 
                 <div id="gameInputLine">
                     <div class="input-line">
-                        <span class="prompt">$ </span>
+                        <span class="prompt">$</span>
                         <span class="placeholder-text" id="placeholderText">Опишите вашу идею игры...</span>
                         <span class="cursor" id="gameCursor">|</span>
                         <input type="text" class="terminal-input" id="gameInput" placeholder="Опишите вашу идею игры..." style="display: none;" />
@@ -412,6 +583,58 @@
                 <div class="feature-icon">▶️</div>
                 <h3 class="feature-title">Instantly Playable</h3>
                 <p class="feature-desc">Get a working game in seconds that you can play and share immediately</p>
+            </div>
+        </div>
+        
+        <!-- Pricing -->
+        <div class="pricing">
+            <h2 class="pricing-title">Выберите подходящий вариант</h2>
+            <p class="pricing-subtitle">Выберите подходящие опции</p>
+            
+            <div class="pricing-container">
+                <div class="pricing-left">
+                    <div class="package-option" data-package="quality" data-price="25000">
+                        <div class="package-icon quality">💖</div>
+                        <div class="package-content">
+                            <div class="package-title">Качественно</div>
+                            <div class="package-description">Превосходный индивидуальный дизайн</div>
+                        </div>
+                        <div class="package-toggle" data-toggle="quality"></div>
+                    </div>
+                    
+                    <div class="package-option selected" data-package="fast" data-price="20000">
+                        <div class="package-icon fast">⚡</div>
+                        <div class="package-content">
+                            <div class="package-title">Быстро</div>
+                            <div class="package-description">Готово за дни, а не недели</div>
+                        </div>
+                        <div class="package-toggle active" data-toggle="fast"></div>
+                    </div>
+                    
+                </div>
+                
+                <div class="pricing-right">
+                    <div class="pricing-summary">
+                        <div class="pricing-amount">₽<span id="totalPrice">20000</span></div>
+                        <div class="pricing-period">Готово за 1-2 недели</div>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon">⏰</div>
+                            <div>До 3 раундов правок</div>
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon">🎨</div>
+                            <div>Детальный дизайн в Figma и интерактивный прототип</div>
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon">💻</div>
+                            <div>Кастомная разработка на Framer</div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
         
@@ -561,6 +784,75 @@
         document.getElementById('gameInput').addEventListener('blur', function() {
             hideGameInput();
         });
+        
+        // Pricing form logic
+        const packages = {
+            quality: { price: 25000, name: 'Качественно' },
+            fast: { price: 20000, name: 'Быстро' }
+        };
+        
+        let selectedPackages = ['fast']; // Default selection
+        
+        function updatePricing() {
+            const totalPrice = selectedPackages.reduce((sum, pkg) => sum + packages[pkg].price, 0);
+            document.getElementById('totalPrice').textContent = totalPrice.toLocaleString();
+            
+            // Update timing based on selection
+            let timing = 'Готово за 1-2 недели';
+            if (selectedPackages.includes('fast') && selectedPackages.length === 1) {
+                timing = 'Готово за дни';
+            } else if (selectedPackages.includes('quality') && selectedPackages.includes('fast')) {
+                timing = 'Готово за 1-2 недели';
+            } else if (selectedPackages.includes('quality')) {
+                timing = 'Готово за 2-3 недели';
+            }
+            
+            document.querySelector('.pricing-period').textContent = timing;
+        }
+        
+        function togglePackage(packageName) {
+            const isSelected = selectedPackages.includes(packageName);
+            
+            if (isSelected) {
+                // Remove package
+                selectedPackages = selectedPackages.filter(pkg => pkg !== packageName);
+            } else {
+                // Add package (max 2)
+                if (selectedPackages.length < 2) {
+                    selectedPackages.push(packageName);
+                } else {
+                    // Replace first selected package
+                    selectedPackages[0] = packageName;
+                }
+            }
+            
+            // Update UI
+            document.querySelectorAll('.package-option').forEach(option => {
+                const pkg = option.dataset.package;
+                const toggle = option.querySelector('.package-toggle');
+                
+                if (selectedPackages.includes(pkg)) {
+                    option.classList.add('selected');
+                    toggle.classList.add('active');
+                } else {
+                    option.classList.remove('selected');
+                    toggle.classList.remove('active');
+                }
+            });
+            
+            updatePricing();
+        }
+        
+        // Add click handlers for package options
+        document.querySelectorAll('.package-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const packageName = this.dataset.package;
+                togglePackage(packageName);
+            });
+        });
+        
+        // Initialize pricing
+        updatePricing();
     </script>
 </body>
 </html>
