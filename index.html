@@ -11,9 +11,23 @@
             box-sizing: border-box;
         }
         
+        /* Система отступов на основе 8px grid */
+        :root {
+            --space-1: 0.5rem;   /* 8px */
+            --space-2: 1rem;     /* 16px */
+            --space-3: 1.5rem;   /* 24px */
+            --space-4: 2rem;     /* 32px */
+            --space-5: 2.5rem;   /* 40px */
+            --space-6: 3rem;     /* 48px */
+            --space-8: 4rem;     /* 64px */
+            --space-10: 5rem;    /* 80px */
+            --space-12: 6rem;    /* 96px */
+            --space-16: 8rem;    /* 128px */
+        }
+        
         body {
-            background: #0a0a0f;
-            color: white;
+            background: #f8fafc;
+            color: #374151;
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             min-height: 100vh;
         }
@@ -21,12 +35,12 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: var(--space-4);
         }
         
         /* Header */
         .header {
-            padding: 2rem 0;
+            padding: var(--space-6) 0;
             text-align: center;
             opacity: 0;
             animation: fadeInHeader 0.7s ease-out forwards;
@@ -40,7 +54,7 @@
         .header h1 {
             font-family: Arial, sans-serif;
             font-weight: bold;
-            color: white;
+            color: #1e3a8a;
             font-size: 1.875rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -55,51 +69,35 @@
         /* Main Title */
         .main-title {
             text-align: center;
-            margin: 4rem 0 3rem;
+            margin: var(--space-8) 0 var(--space-6);
         }
         
         .gradient-text {
             font-size: 4rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease-in-out infinite;
+            color: #1e3a8a;
             line-height: 1.2;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { 
-                background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #3b82f6 100%);
-                -webkit-background-clip: text;
-                background-clip: text;
-            }
-            50% { 
-                background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
-                -webkit-background-clip: text;
-                background-clip: text;
-            }
         }
         
         .subtitle {
             font-size: 1.25rem;
-            color: #d1d5db;
-            margin-top: 1.5rem;
+            color: #6b7280;
+            margin-top: var(--space-3);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
         }
         
         /* Terminal */
         .terminal {
             max-width: 768px;
-            margin: 1.5rem auto;
-            background: #111827;
+            margin: var(--space-3) auto;
+            background: #ffffff;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            border: 1px solid #374151;
+            box-shadow: 0 25px 50px rgba(30, 58, 138, 0.1);
+            border: 2px solid #1e3a8a;
             opacity: 0;
             animation: fadeIn 0.7s ease-in-out 0.2s forwards;
         }
@@ -110,11 +108,11 @@
         }
         
         .terminal-header {
-            background: #1f2937;
-            padding: 1rem;
+            background: #1e3a8a;
+            padding: var(--space-2);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--space-1);
         }
         
         .terminal-button {
@@ -129,18 +127,19 @@
         
         .terminal-title {
             margin-left: auto;
-            color: #9ca3af;
+            color: #ffffff;
             font-size: 12px;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
         }
         
         .terminal-content {
-            padding: 1rem;
+            padding: var(--space-3);
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 14px;
             min-height: 160px;
             cursor: text;
-            color: #22c55e;
+            color: #1e3a8a;
+            line-height: 1.5;
         }
         
         @media (min-width: 768px) {
@@ -150,19 +149,19 @@
         }
         
         .terminal-line {
-            margin: 0 0 1rem 0;
+            margin: 0 0 var(--space-2) 0;
         }
         
         .prompt {
-            color: #22c55e;
+            color: #d97706;
         }
         
         .welcome {
-            color: #fbbf24;
+            color: #d97706;
         }
         
         .normal-text {
-            color: #d1d5db;
+            color: #374151;
         }
         
         .input-line {
@@ -175,18 +174,18 @@
         .terminal-input {
             background: transparent;
             border: none;
-            color: #22c55e;
+            color: #1e3a8a;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 14px;
             outline: none;
             flex: 1;
-            margin-left: 0.5rem;
-            caret-color: #22c55e;
+            margin-left: var(--space-1);
+            caret-color: #d97706;
             width: 100%;
         }
         
         .terminal-input:focus {
-            caret-color: #22c55e;
+            caret-color: #d97706;
         }
         
         .terminal-input::placeholder {
@@ -206,7 +205,7 @@
         }
         
         .cursor {
-            color: #22c55e;
+            color: #d97706;
             animation: blink 1s infinite;
         }
         
@@ -224,30 +223,30 @@
         .tip {
             color: #6b7280;
             font-size: 12px;
-            margin-top: 1rem;
+            margin-top: var(--space-3);
         }
         
         .terminal-text {
-            color: #22c55e;
+            color: #d97706;
         }
         
         .terminal-input-echo {
-            color: #22c55e;
+            color: #1e3a8a;
         }
         
         .action-buttons {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
         }
         
         .action-button-submit {
-            color: #22c55e;
+            color: #d97706;
             transition: color 0.2s;
         }
         
         .action-button-submit:hover {
-            color: #16a34a;
+            color: #92400e;
         }
         
         .action-button-cancel {
@@ -260,26 +259,55 @@
         }
         
         
+        /* Section divider */
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #e5e7eb 50%, transparent 100%);
+            margin: var(--space-8) 0;
+        }
+        
         /* Features */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 4rem auto;
+            gap: var(--space-3);
+            margin: var(--space-8) auto;
             max-width: 1024px;
+            position: relative;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: calc(-1 * var(--space-4));
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #1e3a8a 0%, #d97706 100%);
+            border-radius: 2px;
         }
         
         .feature-card {
-            background: #111827;
-            border: 1px solid #1f2937;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
             border-radius: 0.75rem;
-            padding: 1.5rem;
+            padding: var(--space-4);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             opacity: 0;
             animation: slideUp 0.6s ease-out forwards;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            border-color: #d97706;
+            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.1);
+            transform: translateY(-2px);
         }
         
         .feature-card:nth-child(1) { animation-delay: 0.1s; }
@@ -303,20 +331,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #8b5cf6;
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1e3a8a 0%, #d97706 100%);
+            border-radius: 12px;
+            margin-bottom: var(--space-3);
+            position: relative;
+            box-shadow: 0 4px 8px rgba(30, 58, 138, 0.2);
+        }
+        
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
         }
         
         .feature-title {
             font-size: 1.125rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: white;
+            margin-bottom: var(--space-2);
+            color: #1e3a8a;
+            line-height: 1.4;
         }
         
         .feature-desc {
-            color: #9ca3af;
+            color: #6b7280;
             font-size: 0.875rem;
             line-height: 1.6;
         }
@@ -325,9 +362,10 @@
         /* Footer */
         .footer {
             text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid #374151;
+            padding: var(--space-6) 0;
+            border-top: 1px solid #e5e7eb;
             color: #6b7280;
+            margin-top: var(--space-8);
         }
         
         /* Responsive */
@@ -351,6 +389,42 @@
             <p class="subtitle">Type a prompt, get a playable game instantly. No coding required.</p>
         </div>
         
+        <!-- Features -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Chat to Create</h3>
+                <p class="feature-desc">Simply describe your game idea in natural language and watch it come to life</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2v20M14 2v20M4 7h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">No Coding Required</h3>
+                <p class="feature-desc">Create complex games without writing a single line of code</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="5,3 19,12 5,21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Instantly Playable</h3>
+                <p class="feature-desc">Get a working game in seconds that you can play and share immediately</p>
+            </div>
+        </div>
+        
+        <!-- Section divider -->
+        <div class="section-divider"></div>
+        
         <!-- Terminal -->
         <div class="terminal">
             <div class="terminal-header">
@@ -363,7 +437,7 @@
             <div class="terminal-content">
                 <div class="terminal-line">
                     <div class="welcome">$ Добро пожаловать в Engine Arcade Terminal!</div>
-                    <div class="normal-text" style="margin-top: 0.5rem;">Напишите нам сообщение о том, какую игру хотите создать:</div>
+                    <div class="normal-text" style="margin-top: var(--space-1);">Напишите нам сообщение о том, какую игру хотите создать:</div>
                 </div>
                 
                 <div id="gameInputLine">
@@ -374,13 +448,13 @@
                 </div>
                 
                 <div id="gameIdeaDisplay" style="display: none;">
-                    <div class="terminal-input-echo" id="gameIdeaEcho" style="margin-bottom: 0.75rem;"></div>
+                    <div class="terminal-input-echo" id="gameIdeaEcho" style="margin-bottom: var(--space-2);"></div>
                     <div class="welcome" id="emailPrompt">Отлично! Теперь введите ваш email для связи:</div>
-                    <div class="input-line" id="emailInputLine" style="margin-top: 0.5rem;">
+                    <div class="input-line" id="emailInputLine" style="margin-top: var(--space-1);">
                         <span class="terminal-text">email: </span>
                         <input type="email" class="terminal-input" id="terminalEmail" placeholder="your@email.com" />
                     </div>
-                    <div class="action-buttons" id="actionButtons" style="margin-top: 1rem;">
+                    <div class="action-buttons" id="actionButtons" style="margin-top: var(--space-2);">
                         <span class="action-button-submit">Отправить [Enter]</span>
                         <span class="action-button-cancel">Отмена [Esc]</span>
                     </div>
@@ -388,34 +462,12 @@
                 
                 <div id="thankYouMessage" style="display: none;">
                     <div class="welcome">Сообщение отправлено!</div>
-                    <div class="normal-text" style="margin-top: 0.5rem;">Мы получили ваше сообщение и свяжемся с вами в ближайшее время.</div>
+                    <div class="normal-text" style="margin-top: var(--space-1);">Мы получили ваше сообщение и свяжемся с вами в ближайшее время.</div>
                 </div>
                 
                 <div class="tip" id="terminalTip">
                     Tip: Нажмите в любом месте терминала для ввода текста
                 </div>
-            </div>
-        </div>
-        
-        
-        <!-- Features -->
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3 class="feature-title">Chat to Create</h3>
-                <p class="feature-desc">Simply describe your game idea in natural language and watch it come to life</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🚫</div>
-                <h3 class="feature-title">No Coding Required</h3>
-                <p class="feature-desc">Create complex games without writing a single line of code</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">▶️</div>
-                <h3 class="feature-title">Instantly Playable</h3>
-                <p class="feature-desc">Get a working game in seconds that you can play and share immediately</p>
             </div>
         </div>
         
