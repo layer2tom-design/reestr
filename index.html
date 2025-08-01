@@ -195,62 +195,15 @@
             margin-top: 1rem;
         }
         
-        /* Email Form */
-        .email-section {
-            text-align: center;
-            padding: 4rem 0;
-        }
-        
-        .email-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-        
-        .email-subtitle {
+        .terminal-text {
             color: #d1d5db;
-            margin-bottom: 2rem;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-right: 0.5rem;
         }
         
-        .email-form {
-            max-width: 400px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .terminal-input-echo {
+            color: #22c55e;
         }
         
-        .email-input {
-            padding: 1rem;
-            background: rgba(17, 24, 39, 0.5);
-            border: 1px solid #374151;
-            border-radius: 8px;
-            color: white;
-            font-size: 16px;
-        }
-        
-        .email-input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-        
-        .email-button {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        
-        .email-button:hover {
-            transform: translateY(-2px);
-        }
         
         /* Features */
         .features {
@@ -309,9 +262,6 @@
                 display: none;
             }
             
-            .email-form {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -355,26 +305,35 @@
                 <div class="terminal-line">
                     Напишите нам сообщение о том, какую игру хотите создать:
                 </div>
-                <div class="input-line">
+                <div class="input-line" id="gameInputLine">
                     <span class="prompt">$</span>
-                    <input type="text" class="terminal-input" placeholder="Опишите вашу идею игры..." />
+                    <input type="text" class="terminal-input" id="gameInput" placeholder="Опишите вашу идею игры..." />
                     <span class="cursor">|</span>
                 </div>
-                <div class="tip">
+                <div class="terminal-line" id="gameIdeaDisplay" style="display: none;">
+                    <span class="prompt">$</span> <span class="terminal-input-echo" id="gameIdeaEcho"></span>
+                </div>
+                <div class="terminal-line" id="emailPrompt" style="display: none;">
+                    Отлично! Теперь введите ваш email для связи:
+                </div>
+                <div class="input-line" id="emailInputLine" style="display: none;">
+                    <span class="terminal-text">email: </span>
+                    <input type="email" class="terminal-input" id="terminalEmail" placeholder="your@email.com" />
+                    <span class="cursor">|</span>
+                </div>
+                <div class="terminal-line" id="actionButtons" style="display: none;">
+                    <span style="color: #22c55e;">Отправить [Enter]</span>
+                    <span style="margin-left: 2rem; color: #ef4444;">Отмена [Esc]</span>
+                </div>
+                <div class="terminal-line" id="thankYouMessage" style="display: none;">
+                    <span class="prompt">$</span> <span class="welcome">Спасибо! Мы уведомим вас о запуске Engine Arcade Terminal! 🎉</span>
+                </div>
+                <div class="tip" id="terminalTip">
                     Tip: Нажмите в любом месте терминала для ввода текста
                 </div>
             </div>
         </div>
         
-        <!-- Email Form -->
-        <div class="email-section">
-            <h2 class="email-title">Get Early Access</h2>
-            <p class="email-subtitle">Присоединяйтесь к списку ранних пользователей и получите доступ первыми</p>
-            <form class="email-form" onsubmit="handleSubmit(event)">
-                <input type="email" name="email" class="email-input" placeholder="Enter your email" required />
-                <button type="submit" class="email-button">Join the Waitlist →</button>
-            </form>
-        </div>
         
         <!-- Features -->
         <div class="features">
@@ -408,43 +367,111 @@
         // Инициализация EmailJS (замените на ваш Public Key)
         emailjs.init("YOUR_PUBLIC_KEY");
         
-        async function handleSubmit(event) {
-            event.preventDefault();
+        
+        // Terminal interaction logic
+        let gameIdea = '';
+        let currentStep = 'game'; // 'game' -> 'email' -> 'complete'
+        
+        // Handle game input
+        document.getElementById('gameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value.trim()) {
+                gameIdea = this.value.trim();
+                this.disabled = true;
+                
+                // Show entered game idea
+                document.getElementById('gameIdeaEcho').textContent = gameIdea;
+                document.getElementById('gameIdeaDisplay').style.display = 'block';
+                
+                // Show email prompt and input
+                document.getElementById('emailPrompt').style.display = 'block';
+                document.getElementById('emailInputLine').style.display = 'flex';
+                document.getElementById('actionButtons').style.display = 'block';
+                document.getElementById('terminalEmail').focus();
+                document.getElementById('terminalTip').textContent = 'Tip: Нажмите в любом месте терминала для ввода текста';
+                currentStep = 'email';
+            }
+        });
+        
+        // Handle email input
+        document.getElementById('terminalEmail').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value.trim()) {
+                const email = this.value.trim();
+                this.disabled = true;
+                
+                // Hide input lines and show thank you message
+                document.getElementById('emailInputLine').style.display = 'none';
+                document.getElementById('actionButtons').style.display = 'none';
+                document.getElementById('thankYouMessage').style.display = 'block';
+                document.getElementById('terminalTip').style.display = 'none';
+                
+                // Send email via EmailJS (if configured)
+                sendTerminalEmail(gameIdea, email);
+                currentStep = 'complete';
+            } else if (e.key === 'Escape') {
+                // Reset terminal
+                resetTerminal();
+            }
+        });
+        
+        // Handle Escape key globally
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && currentStep === 'email') {
+                resetTerminal();
+            }
+        });
+        
+        // Reset terminal function
+        function resetTerminal() {
+            // Hide all dynamic elements
+            document.getElementById('gameIdeaDisplay').style.display = 'none';
+            document.getElementById('emailPrompt').style.display = 'none';
+            document.getElementById('emailInputLine').style.display = 'none';
+            document.getElementById('actionButtons').style.display = 'none';
+            document.getElementById('thankYouMessage').style.display = 'none';
             
-            const formData = new FormData(event.target);
-            const email = formData.get('email');
-            const submitButton = event.target.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
+            // Reset inputs
+            document.getElementById('gameInput').disabled = false;
+            document.getElementById('gameInput').value = '';
+            document.getElementById('terminalEmail').disabled = false;
+            document.getElementById('terminalEmail').value = '';
             
-            // Показываем состояние загрузки
-            submitButton.textContent = 'Отправляем...';
-            submitButton.disabled = true;
+            // Show tip and focus game input
+            document.getElementById('terminalTip').style.display = 'block';
+            document.getElementById('terminalTip').textContent = 'Tip: Нажмите в любом месте терминала для ввода текста';
+            document.getElementById('gameInput').focus();
             
+            currentStep = 'game';
+            gameIdea = '';
+        }
+        
+        // Send email function
+        async function sendTerminalEmail(idea, email) {
             try {
-                // Отправка через EmailJS
-                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-                    user_email: email,
-                    to_email: 'layer2tom@gmail.com',
-                    subject: 'Новая подписка на Engine Arcade Terminal',
-                    message: `Новый подписчик: ${email}\nДата: ${new Date().toLocaleString('ru-RU')}`
-                });
-                
-                alert('🎉 Спасибо за подписку! Мы уведомим вас о запуске.');
-                event.target.reset();
-                
+                // Only send if EmailJS is configured
+                if (typeof emailjs !== 'undefined' && 
+                    emailjs.send && 
+                    !'YOUR_SERVICE_ID'.includes('YOUR_')) {
+                    
+                    await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                        user_email: email,
+                        game_idea: idea,
+                        to_email: 'layer2tom@gmail.com',
+                        subject: 'Новая заявка из терминала Engine Arcade',
+                        message: `Идея игры: ${idea}\nEmail: ${email}\nДата: ${new Date().toLocaleString('ru-RU')}`
+                    });
+                }
             } catch (error) {
-                console.error('Error:', error);
-                alert('😔 Произошла ошибка при отправке. Попробуйте позже.');
-            } finally {
-                // Восстанавливаем кнопку
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
+                console.error('Error sending terminal email:', error);
             }
         }
         
         // Focus terminal input when clicking on terminal
         document.querySelector('.terminal').addEventListener('click', function() {
-            document.querySelector('.terminal-input').focus();
+            if (currentStep === 'game') {
+                document.getElementById('gameInput').focus();
+            } else if (currentStep === 'email') {
+                document.getElementById('terminalEmail').focus();
+            }
         });
     </script>
 </body>
