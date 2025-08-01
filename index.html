@@ -26,43 +26,30 @@
         
         /* Header */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
+            padding: 2rem 0;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInHeader 0.7s ease-out forwards;
         }
         
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+        @keyframes fadeInHeader {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .header h1 {
+            font-family: Arial, sans-serif;
             font-weight: bold;
-            font-size: 14px;
-        }
-        
-        .nav {
-            display: flex;
-            gap: 1.5rem;
-        }
-        
-        .nav a {
-            color: #9ca3af;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .nav a:hover {
             color: white;
+            font-size: 1.875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        
+        @media (min-width: 768px) {
+            .header h1 {
+                font-size: 2.25rem;
+            }
         }
         
         /* Main Title */
@@ -106,13 +93,20 @@
         
         /* Terminal */
         .terminal {
-            max-width: 1000px;
-            margin: 4rem auto;
+            max-width: 512px;
+            margin: 1.5rem auto;
             background: #111827;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             border: 1px solid #374151;
+            opacity: 0;
+            animation: fadeIn 0.7s ease-in-out 0.2s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .terminal-header {
@@ -120,11 +114,6 @@
             padding: 1rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-        }
-        
-        .terminal-buttons {
-            display: flex;
             gap: 0.5rem;
         }
         
@@ -134,24 +123,34 @@
             border-radius: 50%;
         }
         
-        .red { background: #ef4444; }
-        .yellow { background: #eab308; }
-        .green { background: #22c55e; }
+        .close-button { background: #ef4444; }
+        .minimize-button { background: #eab308; }
+        .maximize-button { background: #22c55e; }
         
         .terminal-title {
+            margin-left: auto;
             color: #9ca3af;
-            font-size: 14px;
+            font-size: 12px;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
         }
         
         .terminal-content {
-            padding: 2rem;
+            padding: 1rem;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 14px;
+            min-height: 160px;
+            cursor: text;
+            color: #22c55e;
+        }
+        
+        @media (min-width: 768px) {
+            .terminal-content {
+                font-size: 16px;
+            }
         }
         
         .terminal-line {
-            margin: 0.5rem 0;
+            margin: 0 0 1rem 0;
         }
         
         .prompt {
@@ -162,25 +161,39 @@
             color: #fbbf24;
         }
         
+        .normal-text {
+            color: #d1d5db;
+        }
+        
         .input-line {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin: 1rem 0;
+            margin: 0;
         }
         
         .terminal-input {
             background: transparent;
             border: none;
-            color: #d1d5db;
+            color: #22c55e;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 14px;
             outline: none;
             flex: 1;
+            margin-left: 0.5rem;
+        }
+        
+        .terminal-input::placeholder {
+            color: #6b7280;
+        }
+        
+        @media (min-width: 768px) {
+            .terminal-input {
+                font-size: 16px;
+            }
         }
         
         .cursor {
-            color: #d1d5db;
+            color: #22c55e;
             animation: blink 1s infinite;
         }
         
@@ -196,12 +209,35 @@
         }
         
         .terminal-text {
-            color: #d1d5db;
-            margin-right: 0.5rem;
+            color: #22c55e;
         }
         
         .terminal-input-echo {
             color: #22c55e;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .action-button-submit {
+            color: #22c55e;
+            transition: color 0.2s;
+        }
+        
+        .action-button-submit:hover {
+            color: #16a34a;
+        }
+        
+        .action-button-cancel {
+            color: #ef4444;
+            transition: color 0.2s;
+        }
+        
+        .action-button-cancel:hover {
+            color: #dc2626;
         }
         
         
@@ -209,38 +245,60 @@
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
+            gap: 1.5rem;
+            margin: 4rem auto;
+            max-width: 1024px;
         }
         
         .feature-card {
-            background: rgba(17, 24, 39, 0.5);
-            border: 1px solid #374151;
-            border-radius: 12px;
-            padding: 2rem;
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            transition: transform 0.3s, border-color 0.3s;
+            opacity: 0;
+            animation: slideUp 0.6s ease-out forwards;
         }
         
-        .feature-card:hover {
-            transform: translateY(-4px);
-            border-color: #8b5cf6;
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.3s; }
+        .feature-card:nth-child(3) { animation-delay: 0.5s; }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .feature-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #8b5cf6;
-            font-size: 2rem;
+            font-size: 1.75rem;
             margin-bottom: 1rem;
         }
         
         .feature-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
         }
         
         .feature-desc {
-            color: #d1d5db;
+            color: #9ca3af;
+            font-size: 0.875rem;
             line-height: 1.6;
         }
         
@@ -257,11 +315,6 @@
             .gradient-text {
                 font-size: 2.5rem;
             }
-            
-            .nav {
-                display: none;
-            }
-            
         }
     </style>
 </head>
@@ -269,15 +322,7 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <div class="logo">
-                <div class="logo-icon">EA</div>
-                <h1>Engine Arcade</h1>
-            </div>
-            <nav class="nav">
-                <a href="#features">Возможности</a>
-                <a href="#about">О проекте</a>
-                <a href="#contact">Контакты</a>
-            </nav>
+            <h1>ENGINE ARCADE</h1>
         </header>
         
         <!-- Main Title -->
@@ -289,45 +334,45 @@
         <!-- Terminal -->
         <div class="terminal">
             <div class="terminal-header">
-                <div class="terminal-buttons">
-                    <div class="terminal-button red"></div>
-                    <div class="terminal-button yellow"></div>
-                    <div class="terminal-button green"></div>
-                </div>
+                <div class="terminal-button close-button"></div>
+                <div class="terminal-button minimize-button"></div>
+                <div class="terminal-button maximize-button"></div>
                 <div class="terminal-title">engine-arcade-terminal</div>
-                <div style="width: 60px;"></div>
             </div>
             
             <div class="terminal-content">
                 <div class="terminal-line">
-                    <span class="prompt">$</span> <span class="welcome">Добро пожаловать в Engine Arcade Terminal!</span>
+                    <div class="welcome">$ Добро пожаловать в Engine Arcade Terminal!</div>
+                    <div class="normal-text" style="margin-top: 0.5rem;">Напишите нам сообщение о том, какую игру хотите создать:</div>
                 </div>
-                <div class="terminal-line">
-                    Напишите нам сообщение о том, какую игру хотите создать:
+                
+                <div id="gameInputLine">
+                    <div class="input-line">
+                        <span class="prompt">$ </span>
+                        <input type="text" class="terminal-input" id="gameInput" placeholder="Опишите вашу идею игры..." />
+                        <span class="cursor" id="gameCursor">|</span>
+                    </div>
                 </div>
-                <div class="input-line" id="gameInputLine">
-                    <span class="prompt">$</span>
-                    <input type="text" class="terminal-input" id="gameInput" placeholder="Опишите вашу идею игры..." />
-                    <span class="cursor">|</span>
+                
+                <div id="gameIdeaDisplay" style="display: none;">
+                    <div class="terminal-input-echo" id="gameIdeaEcho" style="margin-bottom: 0.75rem;"></div>
+                    <div class="welcome" id="emailPrompt">Отлично! Теперь введите ваш email для связи:</div>
+                    <div class="input-line" id="emailInputLine" style="margin-top: 0.5rem;">
+                        <span class="terminal-text">email: </span>
+                        <input type="email" class="terminal-input" id="terminalEmail" placeholder="your@email.com" />
+                        <span class="cursor" id="emailCursor">|</span>
+                    </div>
+                    <div class="action-buttons" id="actionButtons" style="margin-top: 1rem;">
+                        <span class="action-button-submit">Отправить [Enter]</span>
+                        <span class="action-button-cancel">Отмена [Esc]</span>
+                    </div>
                 </div>
-                <div class="terminal-line" id="gameIdeaDisplay" style="display: none;">
-                    <span class="prompt">$</span> <span class="terminal-input-echo" id="gameIdeaEcho"></span>
+                
+                <div id="thankYouMessage" style="display: none;">
+                    <div class="welcome">Сообщение отправлено!</div>
+                    <div class="normal-text" style="margin-top: 0.5rem;">Мы получили ваше сообщение и свяжемся с вами в ближайшее время.</div>
                 </div>
-                <div class="terminal-line" id="emailPrompt" style="display: none;">
-                    Отлично! Теперь введите ваш email для связи:
-                </div>
-                <div class="input-line" id="emailInputLine" style="display: none;">
-                    <span class="terminal-text">email: </span>
-                    <input type="email" class="terminal-input" id="terminalEmail" placeholder="your@email.com" />
-                    <span class="cursor">|</span>
-                </div>
-                <div class="terminal-line" id="actionButtons" style="display: none;">
-                    <span style="color: #22c55e;">Отправить [Enter]</span>
-                    <span style="margin-left: 2rem; color: #ef4444;">Отмена [Esc]</span>
-                </div>
-                <div class="terminal-line" id="thankYouMessage" style="display: none;">
-                    <span class="prompt">$</span> <span class="welcome">Спасибо! Мы уведомим вас о запуске Engine Arcade Terminal! 🎉</span>
-                </div>
+                
                 <div class="tip" id="terminalTip">
                     Tip: Нажмите в любом месте терминала для ввода текста
                 </div>
@@ -378,17 +423,24 @@
                 gameIdea = this.value.trim();
                 this.disabled = true;
                 
-                // Show entered game idea
-                document.getElementById('gameIdeaEcho').textContent = gameIdea;
-                document.getElementById('gameIdeaDisplay').style.display = 'block';
+                // Hide game input line and cursor
+                document.getElementById('gameInputLine').style.display = 'none';
                 
-                // Show email prompt and input
-                document.getElementById('emailPrompt').style.display = 'block';
-                document.getElementById('emailInputLine').style.display = 'flex';
-                document.getElementById('actionButtons').style.display = 'block';
+                // Show entered game idea and email form
+                document.getElementById('gameIdeaEcho').textContent = '$ ' + gameIdea;
+                document.getElementById('gameIdeaDisplay').style.display = 'block';
                 document.getElementById('terminalEmail').focus();
-                document.getElementById('terminalTip').textContent = 'Tip: Нажмите в любом месте терминала для ввода текста';
                 currentStep = 'email';
+            }
+        });
+        
+        // Handle input changes to hide/show cursor
+        document.getElementById('gameInput').addEventListener('input', function() {
+            const cursor = document.getElementById('gameCursor');
+            if (this.value.length > 0) {
+                cursor.style.display = 'none';
+            } else {
+                cursor.style.display = 'inline';
             }
         });
         
@@ -398,9 +450,8 @@
                 const email = this.value.trim();
                 this.disabled = true;
                 
-                // Hide input lines and show thank you message
-                document.getElementById('emailInputLine').style.display = 'none';
-                document.getElementById('actionButtons').style.display = 'none';
+                // Hide game idea display and show thank you message
+                document.getElementById('gameIdeaDisplay').style.display = 'none';
                 document.getElementById('thankYouMessage').style.display = 'block';
                 document.getElementById('terminalTip').style.display = 'none';
                 
@@ -413,6 +464,16 @@
             }
         });
         
+        // Handle email input changes to hide/show cursor
+        document.getElementById('terminalEmail').addEventListener('input', function() {
+            const cursor = document.getElementById('emailCursor');
+            if (this.value.length > 0) {
+                cursor.style.display = 'none';
+            } else {
+                cursor.style.display = 'inline';
+            }
+        });
+        
         // Handle Escape key globally
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && currentStep === 'email') {
@@ -422,12 +483,12 @@
         
         // Reset terminal function
         function resetTerminal() {
-            // Hide all dynamic elements
+            // Hide dynamic elements
             document.getElementById('gameIdeaDisplay').style.display = 'none';
-            document.getElementById('emailPrompt').style.display = 'none';
-            document.getElementById('emailInputLine').style.display = 'none';
-            document.getElementById('actionButtons').style.display = 'none';
             document.getElementById('thankYouMessage').style.display = 'none';
+            
+            // Show game input line
+            document.getElementById('gameInputLine').style.display = 'block';
             
             // Reset inputs
             document.getElementById('gameInput').disabled = false;
@@ -435,9 +496,12 @@
             document.getElementById('terminalEmail').disabled = false;
             document.getElementById('terminalEmail').value = '';
             
+            // Show cursors
+            document.getElementById('gameCursor').style.display = 'inline';
+            document.getElementById('emailCursor').style.display = 'inline';
+            
             // Show tip and focus game input
             document.getElementById('terminalTip').style.display = 'block';
-            document.getElementById('terminalTip').textContent = 'Tip: Нажмите в любом месте терминала для ввода текста';
             document.getElementById('gameInput').focus();
             
             currentStep = 'game';
