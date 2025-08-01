@@ -169,6 +169,7 @@
             display: flex;
             align-items: center;
             margin: 0;
+            position: relative;
         }
         
         .terminal-input {
@@ -180,6 +181,11 @@
             outline: none;
             flex: 1;
             margin-left: 0.5rem;
+            caret-color: #22c55e;
+            width: 100%;
+        }
+        
+        .terminal-input:focus {
             caret-color: #22c55e;
         }
         
@@ -197,18 +203,17 @@
             color: #6b7280;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
             font-size: 14px;
-            margin-left: 0.5rem;
+        }
+        
+        .cursor {
+            color: #22c55e;
+            animation: blink 1s infinite;
         }
         
         @media (min-width: 768px) {
             .placeholder-text {
                 font-size: 16px;
             }
-        }
-        
-        .cursor {
-            color: #22c55e;
-            animation: blink 1s infinite;
         }
         
         @keyframes blink {
@@ -533,10 +538,8 @@
                 
                 <div id="gameInputLine">
                     <div class="input-line">
-                        <span class="prompt">$</span>
-                        <span class="placeholder-text" id="placeholderText">Опишите вашу идею игры...</span>
-                        <span class="cursor" id="gameCursor">|</span>
-                        <input type="text" class="terminal-input" id="gameInput" placeholder="Опишите вашу идею игры..." style="display: none;" />
+                        <span class="prompt">$ </span>
+                        <input type="text" class="terminal-input" id="gameInput" placeholder="Опишите вашу идею игры..." autofocus />
                     </div>
                 </div>
                 
@@ -712,13 +715,8 @@
             // Reset inputs
             document.getElementById('gameInput').disabled = false;
             document.getElementById('gameInput').value = '';
-            document.getElementById('gameInput').style.display = 'none';
             document.getElementById('terminalEmail').disabled = false;
             document.getElementById('terminalEmail').value = '';
-            
-            // Show cursor and placeholder
-            document.getElementById('placeholderText').style.display = 'inline';
-            document.getElementById('gameCursor').style.display = 'inline';
             
             // Show tip
             document.getElementById('terminalTip').style.display = 'block';
@@ -751,38 +749,10 @@
         // Focus terminal input when clicking on terminal
         document.querySelector('.terminal').addEventListener('click', function() {
             if (currentStep === 'game') {
-                showGameInput();
+                document.getElementById('gameInput').focus();
             } else if (currentStep === 'email') {
                 document.getElementById('terminalEmail').focus();
             }
-        });
-        
-        // Show game input function
-        function showGameInput() {
-            document.getElementById('gameCursor').style.display = 'none';
-            document.getElementById('placeholderText').style.display = 'none';
-            const input = document.getElementById('gameInput');
-            input.style.display = 'block';
-            input.focus();
-        }
-        
-        // Hide game input function
-        function hideGameInput() {
-            const input = document.getElementById('gameInput');
-            if (input.value.trim() === '') {
-                input.style.display = 'none';
-                document.getElementById('placeholderText').style.display = 'inline';
-                document.getElementById('gameCursor').style.display = 'inline';
-            }
-        }
-        
-        // Add focus and blur events for game input
-        document.getElementById('gameInput').addEventListener('focus', function() {
-            document.getElementById('gameCursor').style.display = 'none';
-        });
-        
-        document.getElementById('gameInput').addEventListener('blur', function() {
-            hideGameInput();
         });
         
         // Pricing form logic
