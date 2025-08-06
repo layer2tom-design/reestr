@@ -91,9 +91,38 @@
         /* Chrome-style Cards */
         .chrome-cards-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-6);
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: var(--space-4) var(--space-8);
             margin-top: var(--space-8);
+        }
+        
+        .chrome-card:nth-child(1) {
+            grid-column: 1;
+            grid-row: 1;
+            height: 650px;
+        }
+        
+        .chrome-card:nth-child(2) {
+            grid-column: 2;
+            grid-row: 1;
+            height: 554px;
+        }
+        
+        .chrome-card:nth-child(3) {
+            grid-column: 1;
+            grid-row: 2;
+            height: 602px;
+            align-self: end;
+            transform: translateY(-80px);
+        }
+        
+        .chrome-card:nth-child(4) {
+            grid-column: 2;
+            grid-row: 2;
+            height: 700px;
+            align-self: start;
+            transform: translateY(-80px);
         }
         
         .chrome-card {
@@ -102,13 +131,8 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .chrome-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
         
         .chrome-card.blue {
             background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);
@@ -132,6 +156,11 @@
             color: white;
         }
         
+        .chrome-card.blue .chrome-card-title,
+        .chrome-card.dark-blue .chrome-card-title {
+            color: white;
+        }
+        
         .chrome-card-header {
             font-size: 0.875rem;
             font-weight: 500;
@@ -142,9 +171,10 @@
         }
         
         .chrome-card-title {
-            font-size: 1.5rem;
+            font-size: 2.25rem;
             font-weight: 700;
-            line-height: 1.3;
+            color: rgb(32, 33, 36);
+            line-height: 2.75rem;
             margin-bottom: var(--space-4);
         }
         
@@ -239,7 +269,17 @@
         @media (max-width: 768px) {
             .chrome-cards-grid {
                 grid-template-columns: 1fr;
+                grid-template-rows: auto;
                 gap: var(--space-4);
+            }
+            
+            .chrome-card:nth-child(1),
+            .chrome-card:nth-child(2),
+            .chrome-card:nth-child(3),
+            .chrome-card:nth-child(4) {
+                grid-column: 1;
+                grid-row: auto;
+                height: auto;
             }
             
             .chrome-card {
@@ -286,10 +326,10 @@
         }
         
         .gradient-text {
-            font-size: 3.75rem;
+            font-size: 4.5rem;
             font-weight: 700;
-            color: #202124;
-            line-height: 4.5rem;
+            color: rgb(32, 33, 36);
+            line-height: 5.25rem;
             margin-bottom: var(--space-2);
         }
         
@@ -307,23 +347,225 @@
         
         .subtitle {
             font-size: 1.125rem;
+            font-weight: 400;
             color: #5f6368;
             margin-top: var(--space-3);
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.75rem;
+            line-height: 1.6875rem;
+            letter-spacing: 0rem;
+            font-family: "Google Sans Text", arial, sans-serif;
         }
         
+        /* Chrome Features Section */
+        .section-chrome-features {
+            background: #ffffff;
+            padding: var(--space-16) 0;
+        }
+        
+        .chrome-features-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-12);
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .chrome-browser-mockup {
+            background: rgb(22, 78, 166);
+            border-radius: 2rem;
+            padding: var(--space-8);
+            height: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        
+        .chrome-browser-mockup .chrome-card-title {
+            color: white;
+        }
+        
+        .chrome-card-description {
+            font-size: 1.125rem;
+            color: white;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .browser-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-2);
+            border-bottom: 1px solid #e8eaed;
+            margin-bottom: var(--space-3);
+        }
+        
+        .browser-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .browser-tab {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            background: #f8f9fa;
+            padding: var(--space-1) var(--space-2);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .browser-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2);
+        }
+        
+        .browser-window {
+            background: white;
+            border: 1px solid #e8eaed;
+            border-radius: 12px;
+            padding: var(--space-3);
+            min-height: 120px;
+        }
+        
+        .google-maps {
+            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+        }
+        
+        .google-search {
+            border: 2px solid #4285f4;
+        }
+        
+        .search-interface {
+            text-align: center;
+        }
+        
+        .google-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4285f4;
+            margin-bottom: var(--space-2);
+        }
+        
+        .search-suggestion {
+            font-size: 0.875rem;
+            color: #4285f4;
+            background: #f8f9fa;
+            padding: var(--space-1);
+            border-radius: 4px;
+        }
+        
+        .museum-list h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+        
+        .museum-list ul {
+            list-style: none;
+            font-size: 0.875rem;
+        }
+        
+        .museum-list li {
+            margin-bottom: var(--space-1);
+            color: #5f6368;
+        }
+        
+        .youtube {
+            background: #000;
+            color: white;
+        }
+        
+        .youtube-header {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: var(--space-2);
+        }
+        
+        .video-thumbnail {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            height: 60px;
+            border-radius: 4px;
+        }
+        
+        .feature-block {
+            padding: var(--space-4);
+        }
+        
+        .feature-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #202124;
+            margin-bottom: var(--space-6);
+            line-height: 1.2;
+        }
+        
+        .feature-item {
+            margin-bottom: var(--space-6);
+        }
+        
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .feature-content {
+            margin-left: var(--space-4);
+        }
+        
+        .blue-line {
+            width: 4px;
+            height: 40px;
+            background: #4285f4;
+            border-radius: 2px;
+            float: left;
+            margin-top: var(--space-1);
+        }
+        
+        .feature-subtitle {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #202124;
+            margin-bottom: var(--space-2);
+            line-height: 1.3;
+        }
+        
+        .feature-description {
+            font-size: 1.125rem;
+            color: #5f6368;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 1024px) {
+            .chrome-features-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-8);
+                text-align: center;
+            }
+            
+            .feature-title {
+                font-size: 2rem;
+            }
+            
+            .browser-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Terminal */
         .terminal {
-            max-width: 1000px;
-            margin: var(--space-3) auto;
+            width: 100%;
+            height: 650px;
+            margin: var(--space-3) 0;
             background: #ffffff;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(30, 58, 138, 0.1);
-            border: 2px solid #1e3a8a;
+            border: 2px solid #1b72e8;
             opacity: 0;
             animation: fadeIn 0.7s ease-in-out 0.2s forwards;
         }
@@ -334,7 +576,7 @@
         }
         
         .terminal-header {
-            background: #1e3a8a;
+            background: #1b72e8;
             padding: var(--space-2);
             display: flex;
             align-items: center;
@@ -354,23 +596,38 @@
         .terminal-title {
             margin-left: auto;
             color: #ffffff;
-            font-size: 12px;
+            font-size: 1.5vw;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
         }
         
         .terminal-content {
             padding: var(--space-3);
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
+            font-size: 3vw;
             min-height: 160px;
             cursor: text;
-            color: #1e3a8a;
+            color: #1b72e8;
             line-height: 1.5;
         }
         
         @media (min-width: 768px) {
             .terminal-content {
-                font-size: 16px;
+                font-size: 2vw;
+            }
+            
+            .terminal-title {
+                font-size: 1vw;
+            }
+            
+            .tip,
+            #terminalTip {
+                font-size: 1.33vw !important;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            #terminalTip {
+                font-size: 1.33vw !important;
             }
         }
         
@@ -387,7 +644,12 @@
         }
         
         .normal-text {
-            color: #374151;
+            color: #5f6368;
+            font-size: 1.125rem;
+            font-weight: 400;
+            line-height: 1.6875rem;
+            letter-spacing: 0rem;
+            font-family: "Google Sans Text", arial, sans-serif;
         }
         
         .input-line {
@@ -400,9 +662,9 @@
         .terminal-input {
             background: transparent;
             border: none;
-            color: #1e3a8a;
+            color: #1b72e8;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
+            font-size: 3vw;
             outline: none;
             flex: 1;
             margin-left: 0.5rem;
@@ -420,14 +682,14 @@
         
         @media (min-width: 768px) {
             .terminal-input {
-                font-size: 16px;
+                font-size: 2vw;
             }
         }
         
         .placeholder-text {
             color: #6b7280;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
+            font-size: 3vw;
         }
         
         .cursor {
@@ -437,7 +699,7 @@
         
         @media (min-width: 768px) {
             .placeholder-text {
-                font-size: 16px;
+                font-size: 2vw;
             }
         }
         
@@ -446,9 +708,10 @@
             51%, 100% { opacity: 0; }
         }
         
-        .tip {
+        .tip,
+        #terminalTip {
             color: #6b7280;
-            font-size: 12px;
+            font-size: 2vw !important;
             margin-top: var(--space-3);
         }
         
@@ -457,7 +720,7 @@
         }
         
         .terminal-input-echo {
-            color: #1e3a8a;
+            color: #1b72e8;
         }
         
         .action-buttons {
@@ -492,16 +755,17 @@
         
         .why-choose-us {
             margin: 0 auto;
-            max-width: 1024px;
         }
         
         .why-choose-title {
             text-align: center;
-            font-size: 2.25rem;
+            font-size: 3rem;
             font-weight: 700;
-            color: #202124;
+            color: rgb(32, 33, 36);
             margin-bottom: var(--space-6);
-            line-height: 2.75rem;
+            line-height: 3rem;
+            letter-spacing: -0.09375rem;
+            font-family: "Google Sans", arial, sans-serif;
         }
         
         .why-choose-grid {
@@ -509,7 +773,9 @@
             grid-template-columns: repeat(2, 1fr);
             gap: var(--space-6);
             margin-top: var(--space-6);
+            align-items: start;
         }
+        
         
         .why-choose-card {
             background: #ffffff;
@@ -517,14 +783,32 @@
             border-radius: 1.5rem;
             padding: var(--space-5);
             transition: all 0.3s ease;
-            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.08);
             text-align: center;
         }
         
-        .why-choose-card:hover {
-            box-shadow: 0 8px 25px rgba(32, 33, 36, 0.15);
-            transform: translateY(-4px);
+        .why-choose-card:first-child {
+            background: #fef7df;
+            grid-column: 1 / -1;
+            height: 550px;
         }
+        
+        .why-choose-card:nth-child(2) {
+            grid-column: 1;
+            grid-row: 2;
+            align-self: start;
+            height: 550px;
+            padding: var(--space-8);
+        }
+        
+        .why-choose-card:nth-child(3) {
+            background: #fde293;
+            grid-column: 2;
+            grid-row: 2;
+            align-self: start;
+            height: 550px;
+            padding: var(--space-8);
+        }
+        
         
         .why-choose-card-icon {
             width: 48px;
@@ -535,7 +819,6 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto var(--space-3);
-            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
         }
         
         .why-choose-card-icon svg {
@@ -545,11 +828,11 @@
         }
         
         .why-choose-card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #202124;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: rgb(32, 33, 36);
             margin-bottom: var(--space-2);
-            line-height: 1.3;
+            line-height: 2.75rem;
         }
         
         .why-choose-card-stat {
@@ -562,10 +845,13 @@
         
         .why-choose-card-desc {
             color: #5f6368;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 1.125rem;
+            font-weight: 400;
+            line-height: 1.6875rem;
             max-width: 260px;
             margin: 0 auto;
+            letter-spacing: 0rem;
+            font-family: "Google Sans Text", arial, sans-serif;
         }
         
         @media (max-width: 768px) {
@@ -639,8 +925,8 @@
         .faq-question h3 {
             margin: 0;
             font-size: 1.75rem;
-            font-weight: 500;
-            color: #1a73e8;
+            font-weight: 700;
+            color: rgb(25, 103, 210);
             line-height: 2.25rem;
             flex: 1;
             padding-right: var(--space-2);
@@ -648,12 +934,12 @@
         
         .faq-toggle {
             color: #1a73e8;
-            font-size: 1.5rem;
+            font-size: 3rem;
             font-weight: 300;
             transition: transform 0.3s ease;
             flex-shrink: 0;
-            width: 24px;
-            height: 24px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -679,8 +965,11 @@
         .faq-answer p {
             margin: 0;
             color: #5f6368;
-            line-height: 1.6;
-            font-size: 1rem;
+            line-height: 1.6875rem;
+            font-size: 1.125rem;
+            font-weight: 400;
+            letter-spacing: 0rem;
+            font-family: "Google Sans Text", arial, sans-serif;
         }
         
         @media (max-width: 768px) {
@@ -715,12 +1004,14 @@
         }
         
         .section-title {
-            font-size: 2.25rem;
+            font-size: 3rem;
             font-weight: 700;
-            color: #202124;
+            color: rgb(32, 33, 36);
             text-align: center;
             margin-bottom: var(--space-8);
-            line-height: 2.75rem;
+            line-height: 3rem;
+            letter-spacing: -0.09375rem;
+            font-family: "Google Sans", arial, sans-serif;
         }
         
         .features-modern {
@@ -743,14 +1034,9 @@
             position: relative;
             overflow: hidden;
             margin: var(--space-4) calc(-1 * var(--space-12));
-            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.08);
             transition: all 0.3s ease;
         }
         
-        .step-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(32, 33, 36, 0.15);
-        }
         
         .step-card.primary {
             background: #ffffff;
@@ -779,11 +1065,11 @@
         }
         
         .step-title {
-            font-size: 2rem;
+            font-size: 2.25rem;
             font-weight: 700;
-            color: #202124;
+            color: rgb(32, 33, 36);
             margin-bottom: var(--space-4);
-            line-height: 1.2;
+            line-height: 2.75rem;
         }
         
         .step-card.primary .step-title {
@@ -796,9 +1082,12 @@
         
         .step-description {
             font-size: 1.125rem;
+            font-weight: 400;
             color: #5f6368;
-            line-height: 1.6;
+            line-height: 1.6875rem;
             margin-bottom: 0;
+            letter-spacing: 0rem;
+            font-family: "Google Sans Text", arial, sans-serif;
         }
         
         .step-visual {
@@ -829,7 +1118,8 @@
             }
             
             .step-description {
-                font-size: 1rem;
+                font-size: 1.375rem;
+                font-weight: 300;
             }
         }
         
@@ -1015,6 +1305,41 @@
         </div>
     </section>
     
+    <!-- New Chrome Features Section -->
+    <section id="chrome-features" class="full-width-section section-chrome-features">
+        <div class="section-content">
+            <div class="chrome-features-container">
+                <div class="chrome-features-left">
+                    <div class="chrome-browser-mockup">
+                        <h2 class="chrome-card-title">Быстрая регистрация ПО</h2>
+                        <p class="chrome-card-description">Обеспечиваем быструю и качественную регистрацию программного обеспечения в Реестре Минцифры</p>
+                    </div>
+                </div>
+                
+                <div class="chrome-features-right">
+                    <div class="feature-block">
+                        <h2 class="feature-title">Цифры</h2>
+                        
+                        <div class="feature-item">
+                            <h3 class="feature-subtitle">7 лет. Экспертиза в IT-праве</h3>
+                            <p class="feature-description">Специализируемся на юридическом сопровождении IT-компаний с 2018 года</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <h3 class="feature-subtitle">4 года. Опыт</h3>
+                            <p class="feature-description">Опыт регистрации программ для ЭВМ в Реестре российского программного обеспечения с 2021 года</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <h3 class="feature-subtitle">95 %. Высокий процент успеха</h3>
+                            <p class="feature-description">Клиенты успешно получают аккредитацию с первой подачи</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Features Section -->
     <section id="features" class="full-width-section section-features">
         <div class="section-content">
@@ -1140,74 +1465,6 @@
         </div>
     </section>
     
-    <!-- Stats Section -->
-    <section id="stats" class="full-width-section section-stats">
-        <div class="section-content">
-            <!-- Why Choose Us Section -->
-            <section class="why-choose-us-section">
-                <div class="why-choose-us">
-                    <h2 class="why-choose-title">Почему выбирают нас</h2>
-                    
-                    <div class="why-choose-grid">
-                        <div class="why-choose-card">
-                            <div class="why-choose-card-icon">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L13.09 8.26L20 7L18.74 14.74L21 16L14.74 17.26L16 21L8.26 19.91L7 21L5.26 14.74L2 13L8.26 11.74L7 2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <div class="why-choose-card-stat">7 лет</div>
-                            <h3 class="why-choose-card-title">Экспертиза в IT-праве</h3>
-                            <p class="why-choose-card-desc">
-                                Специализируемся на юридическом сопровождении IT-компаний с 2018 года
-                            </p>
-                        </div>
-                        
-                        <div class="why-choose-card">
-                            <div class="why-choose-card-icon">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <div class="why-choose-card-stat">4 года</div>
-                            <h3 class="why-choose-card-title">Опыт</h3>
-                            <p class="why-choose-card-desc">
-                                Опыт регистрации программ для ЭВМ в Реестре российского программного обеспечения с 2021 года
-                            </p>
-                        </div>
-                        
-                        <div class="why-choose-card">
-                            <div class="why-choose-card-icon">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <div class="why-choose-card-stat">95%</div>
-                            <h3 class="why-choose-card-title">Высокий процент успеха</h3>
-                            <p class="why-choose-card-desc">
-                                Клиентов успешно получают аккредитацию с первой подачи
-                            </p>
-                        </div>
-                        
-                        <div class="why-choose-card">
-                            <div class="why-choose-card-icon">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                                    <polyline points="12,6 12,12 16,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="why-choose-card-title">Соблюдение сроков</h3>
-                            <p class="why-choose-card-desc">
-                                Четко планируем работу и регулярно информируем о ходе процедур
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </section>
     
     <!-- FAQ Section -->
     <section id="faq" class="full-width-section section-faq">
@@ -1300,9 +1557,6 @@
                     <div class="normal-text" style="margin-top: var(--space-1);">Мы получили ваше сообщение и свяжемся с вами в ближайшее время.</div>
                 </div>
                 
-                <div class="tip" id="terminalTip">
-                    Tip: Заполните оба поля и нажмите "Отправить"
-                </div>
             </div>
         </div>
         
