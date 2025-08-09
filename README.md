@@ -25,4 +25,4 @@
 
 ---
 
-© 2025 Engine Arcade. All rights reserved.
+© 2025 LexClaude. All rights reserved.
