@@ -1840,10 +1840,15 @@
         
         // Submit form function
         function submitForm() {
+            console.log('submitForm called');
+            
             contactMessage = document.getElementById('gameInput').value.trim();
             userEmail = document.getElementById('terminalEmail').value.trim();
             
+            console.log('Form data:', { contactMessage, userEmail });
+            
             if (!contactMessage || !userEmail) {
+                console.log('Validation failed: empty fields');
                 // Basic validation - could add visual feedback here
                 if (!contactMessage) document.getElementById('gameInput').focus();
                 else if (!userEmail) document.getElementById('terminalEmail').focus();
@@ -1853,18 +1858,25 @@
             // Validate email format
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(userEmail)) {
+                console.log('Email validation failed');
                 showTerminalMessage('❌ Некорректный email адрес');
                 return;
             }
             
+            console.log('Validation passed, disabling inputs');
+            
             // Disable inputs
-            document.getElementById('gameInput').disabled = true;
-            document.getElementById('terminalEmail').disabled = true;
+            const gameInput = document.getElementById('gameInput');
+            const terminalEmail = document.getElementById('terminalEmail');
+            if (gameInput) gameInput.disabled = true;
+            if (terminalEmail) terminalEmail.disabled = true;
             
             // Show loading message
+            console.log('Showing loading message');
             showTerminalMessage('⏳ Отправляем сообщение...');
             
             // Send email via EmailJS (if configured)
+            console.log('Calling sendTerminalEmail');
             sendTerminalEmail(contactMessage, userEmail);
         }
         
@@ -1877,22 +1889,33 @@
         
         // Send email function
         async function sendTerminalEmail(message, email) {
+            console.log('sendTerminalEmail called with:', { message, email });
+            
             try {
+                // Check if EmailJS is available
+                console.log('EmailJS available:', typeof emailjs !== 'undefined');
+                console.log('EmailJS send function:', typeof emailjs?.send);
+                
                 // Only send if EmailJS is configured
                 if (typeof emailjs !== 'undefined' && 
                     emailjs.send) {
                     
-                    await emailjs.send('service_7zix5m8', 'template_auu8tfo', {
+                    console.log('Sending email via EmailJS...');
+                    
+                    const result = await emailjs.send('service_7zix5m8', 'template_auu8tfo', {
                         user_email: email,
                         message: message,
                         date: new Date().toLocaleString('ru-RU'),
                         subject: 'Новая заявка с LexCloud - консультация по регистрации ПО'
                     });
                     
+                    console.log('EmailJS result:', result);
+                    
                     // Show success message
                     showTerminalMessage('✅ Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
                     
                 } else {
+                    console.log('EmailJS not available or not configured');
                     // EmailJS not configured - show demo message
                     showTerminalMessage('📧 Форма настроена! (Необходимо добавить ключи EmailJS)');
                 }
@@ -1904,10 +1927,18 @@
         
         // Show terminal message function
         function showTerminalMessage(message) {
+            console.log('showTerminalMessage called with:', message);
+            
             // Find elements with safety checks
             const expandedForm = document.getElementById('expandedForm');
             const thankYouMessage = document.getElementById('thankYouMessage');
             const terminalTip = document.getElementById('terminalTip');
+            
+            console.log('Elements found:', {
+                expandedForm: !!expandedForm,
+                thankYouMessage: !!thankYouMessage,
+                terminalTip: !!terminalTip
+            });
             
             // Check if all elements exist
             if (!expandedForm || !thankYouMessage) {
