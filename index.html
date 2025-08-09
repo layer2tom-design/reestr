@@ -321,11 +321,11 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: var(--md-sys-elevation-level1);
+            box-shadow: none;
         }
         
         .chrome-card:hover {
-            box-shadow: var(--md-sys-elevation-level2);
+            box-shadow: none;
         }
         
         .chrome-card.blue {
@@ -336,7 +336,7 @@
         .chrome-card.light-gray {
             background: var(--custom-card-blue-light);
             color: var(--custom-card-text-dark);
-            border: 1px solid var(--custom-card-border);
+            border: none;
         }
         
         .chrome-card.white {
@@ -394,15 +394,15 @@
         }
         
         .chrome-card-plus {
-            width: 40px;
-            height: 40px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 2.5rem;
+            font-weight: normal;
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -412,6 +412,12 @@
         .chrome-card.white .chrome-card-plus {
             background: var(--custom-header-brand-text);
             color: white;
+        }
+        
+        .chrome-card.blue .chrome-card-plus,
+        .chrome-card.dark-blue .chrome-card-plus {
+            background: white;
+            color: var(--custom-header-brand-text);
         }
         
         .chrome-card-plus:hover {
@@ -588,7 +594,8 @@
             border-radius: 2rem;
             padding: var(--space-8);
             height: 500px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
+            border: none;
             color: white;
         }
         
@@ -1586,28 +1593,6 @@
                     <div class="chrome-card blue card-medium-text">
                         <div class="chrome-card-header">Безопасность документов</div>
                         <h3 class="chrome-card-title">Используйте защищенное хранение документов на всех этапах регистрации.</h3>
-                        <div class="chrome-card-visual">
-                            <svg viewBox="0 0 200 120" width="160" height="96" role="img" aria-labelledby="svg-title-1">
-                                <title id="svg-title-1">Защищенное хранение документов</title>
-                                <!-- Login form mockup -->
-                                <rect x="20" y="20" width="160" height="80" rx="12" fill="rgba(255,255,255,0.9)"/>
-                                
-                                <!-- Username field -->
-                                <rect x="35" y="35" width="130" height="12" rx="6" fill="rgba(255,255,255,1)" stroke="rgba(255,255,255,0.6)"/>
-                                <text x="40" y="43" font-size="6" fill="#5f6368">документы.реестр</text>
-                                
-                                <!-- Password field -->
-                                <rect x="35" y="55" width="130" height="12" rx="6" fill="rgba(255,255,255,1)" stroke="rgba(255,255,255,0.6)"/>
-                                <text x="40" y="63" font-size="6" fill="#5f6368">••••••••</text>
-                                <circle cx="155" cy="61" r="3" fill="rgba(255,255,255,0.8)"/>
-                                
-                                <!-- Suggestion popup -->
-                                <rect x="45" y="72" width="90" height="20" rx="4" fill="rgba(255,255,255,0.95)" stroke="rgba(255,255,255,0.8)"/>
-                                <text x="50" y="79" font-size="4" fill="#202124">Использовать защищенный пароль?</text>
-                                <circle cx="85" cy="87" r="2" fill="#4285f4"/>
-                                <text x="92" y="89" font-size="4" fill="#4285f4">••••••••••••</text>
-                            </svg>
-                        </div>
                         <div class="chrome-card-footer">
                             <div class="chrome-card-plus">+</div>
                         </div>
@@ -1617,26 +1602,6 @@
                     <div class="chrome-card light-gray card-large-text">
                         <div class="chrome-card-header">Проверка соответствия</div>
                         <h3 class="chrome-card-title">Проверяйте соответствие требованиям реестра в режиме реального времени.</h3>
-                        <div class="chrome-card-visual">
-                            <svg viewBox="0 0 200 120" width="160" height="96" role="img" aria-labelledby="svg-title-2">
-                                <title id="svg-title-2">Проверка соответствия</title>
-                                <!-- Security check interface -->
-                                <rect x="30" y="25" width="140" height="70" rx="8" fill="#ffffff" stroke="#e8eaed"/>
-                                
-                                <!-- Progress indicator -->
-                                <circle cx="60" cy="45" r="12" fill="#34a853" stroke="#ffffff" stroke-width="2"/>
-                                <path d="M54 45 L58 49 L66 41" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                
-                                <!-- Check items -->
-                                <rect x="80" y="38" width="80" height="3" rx="1.5" fill="#34a853"/>
-                                <rect x="80" y="48" width="60" height="3" rx="1.5" fill="#34a853"/>
-                                <rect x="80" y="58" width="70" height="3" rx="1.5" fill="#34a853"/>
-                                
-                                <!-- Bottom status -->
-                                <rect x="35" y="75" width="130" height="15" rx="7.5" fill="#e8f5e8"/>
-                                <text x="60" y="84" font-size="6" fill="#137333">Требования соблюдены</text>
-                            </svg>
-                        </div>
                         <div class="chrome-card-footer">
                             <div class="chrome-card-plus">+</div>
                         </div>
@@ -1646,25 +1611,6 @@
                     <div class="chrome-card white card-large-text">
                         <div class="chrome-card-header">Защищенный процесс</div>
                         <h3 class="chrome-card-title">Будьте уверены в защите от ошибок при подаче документов.</h3>
-                        <div class="chrome-card-visual">
-                            <svg viewBox="0 0 200 120" width="160" height="96" role="img" aria-labelledby="svg-title-3">
-                                <title id="svg-title-3">Защита от ошибок</title>
-                                <!-- Safe browsing warning -->
-                                <rect x="20" y="20" width="160" height="80" rx="12" fill="#ffffff" stroke="#e8eaed"/>
-                                
-                                <!-- Warning icon -->
-                                <circle cx="100" cy="50" r="15" fill="#ea4335"/>
-                                <text x="96" y="56" font-size="12" fill="white" font-weight="bold">!</text>
-                                
-                                <!-- Warning text -->
-                                <text x="100" y="75" font-size="8" fill="#ea4335" text-anchor="middle">Обнаружена ошибка</text>
-                                <text x="100" y="85" font-size="6" fill="#5f6368" text-anchor="middle">в документах</text>
-                                
-                                <!-- Action button -->
-                                <rect x="70" y="90" width="60" height="8" rx="4" fill="#1a73e8"/>
-                                <text x="100" y="96" font-size="5" fill="white" text-anchor="middle">Исправить</text>
-                            </svg>
-                        </div>
                         <div class="chrome-card-footer">
                             <div class="chrome-card-plus">+</div>
                         </div>
@@ -1674,27 +1620,6 @@
                     <div class="chrome-card dark-blue card-medium-text">
                         <div class="chrome-card-header">Руководство по конфиденциальности</div>
                         <h3 class="chrome-card-title">Управляйте конфиденциальностью с помощью удобных настроек.</h3>
-                        <div class="chrome-card-visual">
-                            <svg viewBox="0 0 200 120" width="160" height="96" role="img" aria-labelledby="svg-title-4">
-                                <title id="svg-title-4">Управление конфиденциальностью</title>
-                                <!-- Privacy shield with Google G -->
-                                <defs>
-                                    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#4285f4;stop-opacity:0.8" />
-                                        <stop offset="100%" style="stop-color:#1a73e8;stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                                
-                                <!-- Shield shape -->
-                                <path d="M100 25 L130 35 L130 65 Q130 85 100 95 Q70 85 70 65 L70 35 Z" fill="url(#shieldGradient)"/>
-                                
-                                <!-- Google G -->
-                                <circle cx="100" cy="60" r="18" fill="rgba(255,255,255,0.9)"/>
-                                <path d="M108 60 L108 65 L115 65 Q118 65 118 62 Q118 55 112 55 L95 55 Q88 55 88 62 Q88 69 95 69 L108 69" 
-                                      fill="none" stroke="#1a73e8" stroke-width="3" stroke-linecap="round"/>
-                                <path d="M108 60 L115 60" stroke="#1a73e8" stroke-width="3" stroke-linecap="round"/>
-                            </svg>
-                        </div>
                         <div class="chrome-card-footer">
                             <div class="chrome-card-plus">+</div>
                         </div>
