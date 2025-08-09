@@ -1796,12 +1796,12 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        // Инициализация EmailJS (замените на ваш Public Key)
-        emailjs.init("YOUR_PUBLIC_KEY");
+        // Инициализация EmailJS
+        emailjs.init("UJKngeqHjC4LoEG2V");
         
         
-        // Terminal interaction logic - expanded form version
-        let gameIdea = '';
+        // Terminal interaction logic - contact form version
+        let contactMessage = '';
         let userEmail = '';
         
         // Handle Enter key on both inputs (only Enter, allow all other keys)
@@ -1840,13 +1840,20 @@
         
         // Submit form function
         function submitForm() {
-            gameIdea = document.getElementById('gameInput').value.trim();
+            contactMessage = document.getElementById('gameInput').value.trim();
             userEmail = document.getElementById('terminalEmail').value.trim();
             
-            if (!gameIdea || !userEmail) {
+            if (!contactMessage || !userEmail) {
                 // Basic validation - could add visual feedback here
-                if (!gameIdea) document.getElementById('gameInput').focus();
+                if (!contactMessage) document.getElementById('gameInput').focus();
                 else if (!userEmail) document.getElementById('terminalEmail').focus();
+                return;
+            }
+            
+            // Validate email format
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(userEmail)) {
+                showTerminalMessage('❌ Некорректный email адрес');
                 return;
             }
             
@@ -1854,13 +1861,11 @@
             document.getElementById('gameInput').disabled = true;
             document.getElementById('terminalEmail').disabled = true;
             
-            // Hide form and show thank you message
-            document.getElementById('expandedForm').style.display = 'none';
-            document.getElementById('thankYouMessage').style.display = 'block';
-            document.getElementById('terminalTip').style.display = 'none';
+            // Show loading message
+            showTerminalMessage('⏳ Отправляем сообщение...');
             
             // Send email via EmailJS (if configured)
-            sendTerminalEmail(gameIdea, userEmail);
+            sendTerminalEmail(contactMessage, userEmail);
         }
         
         // Clear form function
@@ -1871,24 +1876,81 @@
         }
         
         // Send email function
-        async function sendTerminalEmail(idea, email) {
+        async function sendTerminalEmail(message, email) {
             try {
                 // Only send if EmailJS is configured
                 if (typeof emailjs !== 'undefined' && 
-                    emailjs.send && 
-                    !'YOUR_SERVICE_ID'.includes('YOUR_')) {
+                    emailjs.send) {
                     
-                    await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                    await emailjs.send('service_7zix5m8', 'template_auu8tfo', {
                         user_email: email,
-                        game_idea: idea,
-                        to_email: 'layer2tom@gmail.com',
-                        subject: 'Новая заявка из терминала Engine Arcade',
-                        message: `Идея игры: ${idea}\nEmail: ${email}\nДата: ${new Date().toLocaleString('ru-RU')}`
+                        message: message,
+                        date: new Date().toLocaleString('ru-RU'),
+                        subject: 'Новая заявка с LexCloud - консультация по регистрации ПО'
                     });
+                    
+                    // Show success message
+                    showTerminalMessage('✅ Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+                    
+                } else {
+                    // EmailJS not configured - show demo message
+                    showTerminalMessage('📧 Форма настроена! (Необходимо добавить ключи EmailJS)');
                 }
             } catch (error) {
                 console.error('Error sending terminal email:', error);
+                showTerminalMessage('❌ Ошибка отправки. Попробуйте позже или свяжитесь с нами напрямую.');
             }
+        }
+        
+        // Show terminal message function
+        function showTerminalMessage(message) {
+            // Hide form and show message
+            document.getElementById('expandedForm').style.display = 'none';
+            document.getElementById('thankYouMessage').style.display = 'block';
+            document.getElementById('terminalTip').style.display = 'none';
+            
+            // Update thank you message
+            const thankYouDiv = document.getElementById('thankYouMessage');
+            thankYouDiv.innerHTML = `
+                <div class="terminal-line">
+                    <span class="prompt">lexcloud@terminal:~$</span> <span class="terminal-text">${message}</span>
+                </div>
+                <div class="terminal-line" style="margin-top: var(--space-2);">
+                    <span class="prompt">lexcloud@terminal:~$</span> <span class="terminal-text">Нажмите Enter для новой заявки</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="prompt">lexcloud@terminal:~$</span> <span class="cursor">|</span>
+                </div>
+            `;
+            
+            // Reset form after 5 seconds or on Enter key
+            setTimeout(() => {
+                resetTerminalForm();
+            }, 5000);
+            
+            // Add Enter key listener for immediate reset
+            const handleReset = (e) => {
+                if (e.key === 'Enter') {
+                    resetTerminalForm();
+                    document.removeEventListener('keydown', handleReset);
+                }
+            };
+            document.addEventListener('keydown', handleReset);
+        }
+        
+        // Reset terminal form function
+        function resetTerminalForm() {
+            // Show form again
+            document.getElementById('expandedForm').style.display = 'block';
+            document.getElementById('thankYouMessage').style.display = 'none';
+            document.getElementById('terminalTip').style.display = 'block';
+            
+            // Enable and clear inputs
+            document.getElementById('gameInput').disabled = false;
+            document.getElementById('terminalEmail').disabled = false;
+            document.getElementById('gameInput').value = '';
+            document.getElementById('terminalEmail').value = '';
+            document.getElementById('gameInput').focus();
         }
         
         // Focus terminal input when clicking on terminal (but not on inputs themselves)
