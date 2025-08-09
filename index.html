@@ -12,8 +12,71 @@
             box-sizing: border-box;
         }
         
-        /* Система отступов на основе 8px grid */
+        /* Material Design 3 Design Tokens */
         :root {
+            /* MD3 Custom Color System - Based on Brand Blue #1a73e8 */
+            --md-sys-color-primary: #1a73e8;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-primary-container: #d2e3ff;
+            --md-sys-color-on-primary-container: #001f3a;
+            --md-sys-color-secondary: #4285f4;
+            --md-sys-color-on-secondary: #FFFFFF;
+            --md-sys-color-secondary-container: #dbe7ff;
+            --md-sys-color-on-secondary-container: #001938;
+            --md-sys-color-tertiary: #6366f1;
+            --md-sys-color-on-tertiary: #FFFFFF;
+            --md-sys-color-tertiary-container: #e0e5ff;
+            --md-sys-color-on-tertiary-container: #1a1b3b;
+            --md-sys-color-background: #fdfcff;
+            --md-sys-color-on-background: #191b23;
+            --md-sys-color-surface: #fdfcff;
+            --md-sys-color-on-surface: #191b23;
+            --md-sys-color-surface-variant: #e1e4ee;
+            --md-sys-color-on-surface-variant: #424751;
+            --md-sys-color-error: #ba1a1a;
+            --md-sys-color-on-error: #FFFFFF;
+            --md-sys-color-error-container: #ffdad6;
+            --md-sys-color-on-error-container: #410002;
+            --md-sys-color-outline: #727785;
+            --md-sys-color-outline-variant: #c2c6d2;
+            
+            /* MD3 Typography Scale */
+            --md-sys-typescale-display-large-font-family: "Google Sans";
+            --md-sys-typescale-display-large-font-size: 3.5625rem; /* 57sp */
+            --md-sys-typescale-display-large-line-height: 4rem; /* 64sp */
+            --md-sys-typescale-display-large-font-weight: 400;
+            
+            --md-sys-typescale-headline-large-font-family: "Google Sans";
+            --md-sys-typescale-headline-large-font-size: 2rem; /* 32sp */
+            --md-sys-typescale-headline-large-line-height: 2.5rem; /* 40sp */
+            --md-sys-typescale-headline-large-font-weight: 400;
+            
+            --md-sys-typescale-title-large-font-family: "Google Sans";
+            --md-sys-typescale-title-large-font-size: 1.375rem; /* 22sp */
+            --md-sys-typescale-title-large-line-height: 1.75rem; /* 28sp */
+            --md-sys-typescale-title-large-font-weight: 400;
+            
+            --md-sys-typescale-body-large-font-family: "Google Sans Text";
+            --md-sys-typescale-body-large-font-size: 1rem; /* 16sp */
+            --md-sys-typescale-body-large-line-height: 1.5rem; /* 24sp */
+            --md-sys-typescale-body-large-font-weight: 400;
+            
+            /* MD3 Elevation */
+            --md-sys-elevation-level0: none;
+            --md-sys-elevation-level1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+            --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+            --md-sys-elevation-level3: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+            --md-sys-elevation-level4: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+            --md-sys-elevation-level5: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+            
+            /* MD3 Shape */
+            --md-sys-shape-corner-extra-small: 4px;
+            --md-sys-shape-corner-small: 8px;
+            --md-sys-shape-corner-medium: 12px;
+            --md-sys-shape-corner-large: 16px;
+            --md-sys-shape-corner-extra-large: 28px;
+            
+            /* Spacing System (8px grid) */
             --space-1: 0.5rem;   /* 8px */
             --space-2: 1rem;     /* 16px */
             --space-3: 1.5rem;   /* 24px */
@@ -28,9 +91,12 @@
         }
         
         body {
-            background: #ffffff;
-            color: #202124;
-            font-family: "Google Sans", "Roboto", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            background: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+            font-family: var(--md-sys-typescale-body-large-font-family), "Roboto", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-size: var(--md-sys-typescale-body-large-font-size);
+            line-height: var(--md-sys-typescale-body-large-line-height);
+            font-weight: var(--md-sys-typescale-body-large-font-weight);
             min-height: 100vh;
         }
         
@@ -73,15 +139,15 @@
         }
         
         .section-hero {
-            background: #ffffff;
+            background: var(--md-sys-color-surface);
         }
         
         .section-features {
-            background: #ffffff;
+            background: var(--md-sys-color-surface);
         }
         
         .section-stats {
-            background: #ffffff;
+            background: var(--md-sys-color-surface);
         }
         
         .section-contact {
@@ -126,34 +192,38 @@
         }
         
         .chrome-card {
-            border-radius: 2rem;
+            border-radius: var(--md-sys-shape-corner-large);
             padding: var(--space-8);
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            box-shadow: var(--md-sys-elevation-level1);
         }
         
+        .chrome-card:hover {
+            box-shadow: var(--md-sys-elevation-level2);
+        }
         
         .chrome-card.blue {
-            background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);
-            color: white;
+            background: #1b72e8;
+            color: #FFFFFF;
         }
         
         .chrome-card.light-gray {
-            background: #f8f9fa;
-            color: #202124;
-            border: 1px solid #e8eaed;
+            background: #e7f0fe;
+            color: #1a1c20;
+            border: 1px solid #c2c6d2;
         }
         
         .chrome-card.white {
             background: #ffffff;
-            color: #202124;
-            border: 1px solid #e8eaed;
+            color: #1a1c20;
+            border: 1px solid #c2c6d2;
         }
         
         .chrome-card.dark-blue {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1565c0 100%);
-            color: white;
+            background: #164ea6;
+            color: #FFFFFF;
         }
         
         .chrome-card.blue .chrome-card-title,
@@ -171,10 +241,10 @@
         }
         
         .chrome-card-title {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: rgb(32, 33, 36);
-            line-height: 2.75rem;
+            font-family: var(--md-sys-typescale-title-large-font-family);
+            font-size: var(--md-sys-typescale-title-large-font-size);
+            font-weight: var(--md-sys-typescale-title-large-font-weight);
+            line-height: var(--md-sys-typescale-title-large-line-height);
             margin-bottom: var(--space-4);
         }
         
@@ -307,7 +377,7 @@
         .header h1 {
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
             font-weight: bold;
-            color: #1a73e8;
+            color: var(--md-sys-color-primary);
             font-size: 2.25rem;
             letter-spacing: 0.1em;
             margin: 0;
@@ -326,22 +396,24 @@
         }
         
         .gradient-text {
-            font-size: 4.5rem;
-            font-weight: 700;
-            color: rgb(32, 33, 36);
-            line-height: 5.25rem;
+            font-family: var(--md-sys-typescale-display-large-font-family);
+            font-size: var(--md-sys-typescale-display-large-font-size);
+            font-weight: var(--md-sys-typescale-display-large-font-weight);
+            color: var(--md-sys-color-on-background);
+            line-height: var(--md-sys-typescale-display-large-line-height);
             margin-bottom: var(--space-2);
         }
         
         .animated-word {
-            color: #1a73e8;
+            color: var(--md-sys-color-primary);
         }
         
         .subtitle-main {
-            font-size: 3rem;
-            font-weight: 400;
-            color: #5f6368;
-            line-height: 3.5rem;
+            font-family: var(--md-sys-typescale-headline-large-font-family);
+            font-size: var(--md-sys-typescale-headline-large-font-size);
+            font-weight: var(--md-sys-typescale-headline-large-font-weight);
+            color: var(--md-sys-color-on-surface-variant);
+            line-height: var(--md-sys-typescale-headline-large-line-height);
             margin-bottom: var(--space-4);
         }
         
@@ -1203,11 +1275,10 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 40px;
-            box-shadow: 0 8px 32px rgba(32, 33, 36, 0.2);
-            border: 1px solid #e8eaed;
+            background: #ffffff;
+            border-radius: var(--md-sys-shape-corner-extra-large);
+            box-shadow: var(--md-sys-elevation-level3);
+            border: 1px solid var(--md-sys-color-outline-variant);
             padding: var(--space-1);
             opacity: 0;
             transform: translateX(-50%) translateY(-20px);
@@ -1238,22 +1309,23 @@
             display: block;
             padding: var(--space-2) var(--space-4);
             text-decoration: none;
-            color: #5f6368;
+            background: #ffffff;
+            color: #6f7377;
             font-size: 1rem;
             font-weight: 500;
-            border-radius: 32px;
+            border-radius: var(--md-sys-shape-corner-extra-large);
             transition: all 0.2s ease;
             white-space: nowrap;
         }
         
         .floating-nav a:hover {
-            background: #f8f9fa;
-            color: #1a73e8;
+            background: #f0f3f4;
+            color: #6f7377;
         }
         
         .floating-nav a.active {
             background: #f0f3f4;
-            color: #202124;
+            color: #212225;
         }
         
         @media (max-width: 768px) {
