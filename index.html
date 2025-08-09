@@ -1926,26 +1926,17 @@
                     <span class="prompt">lexcloud@terminal:~$</span> <span class="terminal-text">${message}</span>
                 </div>
                 <div class="terminal-line" style="margin-top: var(--space-2);">
-                    <span class="prompt">lexcloud@terminal:~$</span> <span class="terminal-text">Нажмите Enter для новой заявки</span>
+                    <span class="prompt">lexcloud@terminal:~$</span> <span class="terminal-text">Форма сбросится автоматически через 5 секунд...</span>
                 </div>
                 <div class="terminal-line">
                     <span class="prompt">lexcloud@terminal:~$</span> <span class="cursor">|</span>
                 </div>
             `;
             
-            // Reset form after 5 seconds or on Enter key
+            // Reset form after 5 seconds
             setTimeout(() => {
                 resetTerminalForm();
             }, 5000);
-            
-            // Add Enter key listener for immediate reset
-            const handleReset = (e) => {
-                if (e.key === 'Enter') {
-                    resetTerminalForm();
-                    document.removeEventListener('keydown', handleReset);
-                }
-            };
-            document.addEventListener('keydown', handleReset);
         }
         
         // Reset terminal form function
