@@ -1081,6 +1081,7 @@
             color: rgb(32, 33, 36);
             text-align: center;
             margin-bottom: var(--space-8);
+            padding-top: var(--space-8);
             line-height: 3rem;
             letter-spacing: -0.09375rem;
             font-family: "Google Sans", arial, sans-serif;
@@ -1279,7 +1280,7 @@
             border-radius: var(--md-sys-shape-corner-extra-large);
             box-shadow: var(--md-sys-elevation-level3);
             border: 1px solid var(--md-sys-color-outline-variant);
-            padding: var(--space-1);
+            padding: 6px;
             opacity: 0;
             transform: translateX(-50%) translateY(-20px);
             transition: all 0.3s ease;
@@ -1298,7 +1299,7 @@
             padding: 0;
             display: flex;
             align-items: center;
-            gap: var(--space-1);
+            gap: 6px;
         }
         
         .floating-nav li {
@@ -1307,12 +1308,13 @@
         
         .floating-nav a {
             display: block;
-            padding: var(--space-2) var(--space-4);
+            padding: 10px 18px;
             text-decoration: none;
             background: #ffffff;
             color: #6f7377;
             font-size: 1rem;
             font-weight: 500;
+            font-family: "Google Sans", Arial, sans-serif;
             border-radius: var(--md-sys-shape-corner-extra-large);
             transition: all 0.2s ease;
             white-space: nowrap;
@@ -1328,19 +1330,34 @@
             color: #212225;
         }
         
+        .floating-nav a[data-section="contact"] {
+            background: #1b72e8;
+            color: #ffffff;
+        }
+        
+        .floating-nav a[data-section="contact"]:hover {
+            background: #164ea6;
+            color: #ffffff;
+        }
+        
+        .floating-nav a[data-section="contact"].active {
+            background: #164ea6;
+            color: #ffffff;
+        }
+        
         @media (max-width: 768px) {
             .floating-nav {
-                padding: var(--space-1);
+                padding: 5px;
                 border-radius: 32px;
             }
             
             .floating-nav ul {
-                gap: 2px;
+                gap: 3px;
             }
             
             .floating-nav a {
-                padding: var(--space-1) var(--space-2);
-                font-size: 0.875rem;
+                padding: 8px 14px;
+                font-size: 0.9375rem;
             }
         }
     </style>
@@ -1349,11 +1366,10 @@
     <!-- Floating Navigation -->
     <nav class="floating-nav" id="floatingNav">
         <ul>
-            <li><a href="#hero" data-section="hero">Главная</a></li>
             <li><a href="#chrome-features" data-section="chrome-features">Цифры</a></li>
             <li><a href="#features" data-section="features">Особенности</a></li>
             <li><a href="#faq" data-section="faq">Вопросы</a></li>
-            <li><a href="#contact" data-section="contact">Контакты</a></li>
+            <li><a href="#contact" data-section="contact">Получить консультацию</a></li>
         </ul>
     </nav>
 
@@ -1368,9 +1384,9 @@
             <!-- Main Title -->
             <div class="main-title">
                 <h1 class="gradient-text">
-                    Регистрация программы для ЭВМ в 
+                    <strong>Регистрация программы для ЭВМ в 
                     <span class="animated-word">Реестре российского программного обеспечения</span> 
-                    Минцифры
+                    Минцифры</strong>
                 </h1>
                 <p class="subtitle">Опыт регистрации программного обеспечения в Реестре Минцифры с 2021 года</p>
             </div>
@@ -1592,6 +1608,8 @@
     <!-- Contact Section -->  
     <section id="contact" class="full-width-section section-contact">
         <div class="section-content">
+            <h2 class="section-title">Получить консультацию</h2>
+            
             <!-- Terminal -->
         <div class="terminal">
             <div class="terminal-header">
@@ -1794,10 +1812,11 @@
             
             // Update active section
             let currentSection = '';
+            const navOffset = 100; // Offset to account for navigation height
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.offsetHeight;
-                if (scrollY >= sectionTop - 100) {
+                if (scrollY >= sectionTop - navOffset) {
                     currentSection = section.getAttribute('id');
                 }
             });
@@ -1820,9 +1839,13 @@
                 const targetId = link.getAttribute('href').substring(1);
                 const targetSection = document.getElementById(targetId);
                 if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    // Calculate offset to account for floating nav height
+                    const navHeight = floatingNav.offsetHeight + 20; // nav height + some padding
+                    const targetPosition = targetSection.offsetTop - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
