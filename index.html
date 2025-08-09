@@ -1904,14 +1904,28 @@
         
         // Show terminal message function
         function showTerminalMessage(message) {
+            // Find elements with safety checks
+            const expandedForm = document.getElementById('expandedForm');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const terminalTip = document.getElementById('terminalTip');
+            
+            // Check if all elements exist
+            if (!expandedForm || !thankYouMessage) {
+                console.error('Terminal elements not found:', {
+                    expandedForm: !!expandedForm,
+                    thankYouMessage: !!thankYouMessage
+                });
+                alert(message); // Fallback to alert
+                return;
+            }
+            
             // Hide form and show message
-            document.getElementById('expandedForm').style.display = 'none';
-            document.getElementById('thankYouMessage').style.display = 'block';
-            document.getElementById('terminalTip').style.display = 'none';
+            expandedForm.style.display = 'none';
+            thankYouMessage.style.display = 'block';
+            if (terminalTip) terminalTip.style.display = 'none';
             
             // Update thank you message
-            const thankYouDiv = document.getElementById('thankYouMessage');
-            thankYouDiv.innerHTML = `
+            thankYouMessage.innerHTML = `
                 <div class="terminal-line">
                     <span class="prompt">lexcloud@terminal:~$</span> <span class="terminal-text">${message}</span>
                 </div>
@@ -1940,17 +1954,28 @@
         
         // Reset terminal form function
         function resetTerminalForm() {
+            // Find elements with safety checks
+            const expandedForm = document.getElementById('expandedForm');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const terminalTip = document.getElementById('terminalTip');
+            const gameInput = document.getElementById('gameInput');
+            const terminalEmail = document.getElementById('terminalEmail');
+            
             // Show form again
-            document.getElementById('expandedForm').style.display = 'block';
-            document.getElementById('thankYouMessage').style.display = 'none';
-            document.getElementById('terminalTip').style.display = 'block';
+            if (expandedForm) expandedForm.style.display = 'block';
+            if (thankYouMessage) thankYouMessage.style.display = 'none';
+            if (terminalTip) terminalTip.style.display = 'block';
             
             // Enable and clear inputs
-            document.getElementById('gameInput').disabled = false;
-            document.getElementById('terminalEmail').disabled = false;
-            document.getElementById('gameInput').value = '';
-            document.getElementById('terminalEmail').value = '';
-            document.getElementById('gameInput').focus();
+            if (gameInput) {
+                gameInput.disabled = false;
+                gameInput.value = '';
+                gameInput.focus();
+            }
+            if (terminalEmail) {
+                terminalEmail.disabled = false;
+                terminalEmail.value = '';
+            }
         }
         
         // Focus terminal input when clicking on terminal (but not on inputs themselves)
