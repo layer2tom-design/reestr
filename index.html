@@ -2059,9 +2059,8 @@
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.floating-nav a');
         
-        // Show/hide floating nav on scroll
-        let lastScrollY = window.scrollY;
-        window.addEventListener('scroll', () => {
+        // Function to update active section
+        function updateActiveSection() {
             const scrollY = window.scrollY;
             
             // Show nav after scrolling down 200px
@@ -2071,27 +2070,45 @@
                 floatingNav.classList.remove('visible');
             }
             
-            // Update active section
+            // Update active section - только если пользователь прокручивал
             let currentSection = '';
-            const navOffset = 100; // Offset to account for navigation height
+            const navOffset = 100;
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.offsetHeight;
-                if (scrollY >= sectionTop - navOffset) {
+                if (scrollY >= sectionTop - navOffset && scrollY < sectionTop + sectionHeight - navOffset) {
                     currentSection = section.getAttribute('id');
                 }
             });
             
-            // Update active nav link
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-section') === currentSection) {
-                    link.classList.add('active');
-                }
-            });
+            // Если ничего не найдено и мы в начале страницы, установить hero
+            if (!currentSection && scrollY < 100) {
+                currentSection = 'hero';
+            }
             
-            lastScrollY = scrollY;
+            // Update active nav link только если есть currentSection
+            if (currentSection) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure we start at the top
+            if (window.location.hash === '') {
+                window.scrollTo(0, 0);
+            }
+            updateActiveSection();
         });
+        
+        // Show/hide floating nav on scroll
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', updateActiveSection);
         
         // Smooth scroll for nav links
         navLinks.forEach(link => {
