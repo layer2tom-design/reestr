@@ -70,10 +70,21 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+            /* Prevent Safari auto-scroll issues */
+            overflow-x: hidden;
+        }
+        
         html, body {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             font-smooth: always;
+        }
+        
+        body {
+            /* Additional Safari scroll prevention */
+            scroll-restoration: manual;
         }
         
         /* Material Design 3 Design Tokens */
@@ -2097,13 +2108,42 @@
             }
         }
         
-        // Initialize on page load
+        // Immediate scroll to top for Safari - execute as early as possible
+        if (window.location.hash === '') {
+            window.history.replaceState(null, null, window.location.pathname);
+            window.scrollTo(0, 0);
+        }
+        
+        // Initialize on page load - multiple event handlers for Safari compatibility
         document.addEventListener('DOMContentLoaded', () => {
-            // Ensure we start at the top
+            // Force scroll to top for Safari
             if (window.location.hash === '') {
                 window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
             }
-            updateActiveSection();
+            
+            setTimeout(() => {
+                if (window.location.hash === '' && window.scrollY > 0) {
+                    window.scrollTo(0, 0);
+                }
+            }, 10);
+        });
+        
+        window.addEventListener('load', () => {
+            // Double-check after all resources loaded
+            if (window.location.hash === '') {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            }
+            
+            setTimeout(() => {
+                if (window.location.hash === '' && window.scrollY > 0) {
+                    window.scrollTo(0, 0);
+                }
+                updateActiveSection();
+            }, 100);
         });
         
         // Show/hide floating nav on scroll
