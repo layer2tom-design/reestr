@@ -260,6 +260,14 @@
             .section-content {
                 padding: 0 28px;
             }
+            
+            .full-width-section {
+                padding: var(--space-4) 0;
+            }
+            
+            .section-chrome-features {
+                padding: var(--space-4) 0;
+            }
         }
         
         .section-hero {
@@ -317,7 +325,6 @@
         
         .chrome-card {
             border-radius: var(--md-sys-shape-corner-large);
-            padding: var(--space-8);
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -394,14 +401,14 @@
         }
         
         .chrome-card-plus {
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2.75rem;
             font-weight: normal;
             color: white;
             cursor: pointer;
@@ -420,8 +427,15 @@
             color: var(--custom-header-brand-text);
         }
         
+        .chrome-card.blue .chrome-card-plus:hover,
+        .chrome-card.dark-blue .chrome-card-plus:hover {
+            background: #e7f0fe;
+            filter: none;
+        }
+        
         .chrome-card-plus:hover {
             transform: scale(1.1);
+            filter: brightness(0.9);
         }
         
         /* Chrome-style Section Title */
@@ -489,7 +503,7 @@
                 height: auto;
             }
             
-            .chrome-card {
+            .card-front, .card-back {
                 padding: var(--space-6);
             }
             
@@ -577,7 +591,7 @@
         /* Chrome Features Section */
         .section-chrome-features {
             background: var(--custom-bg-white);
-            padding: var(--space-16) 0;
+            padding: var(--space-8) 0;
         }
         
         .chrome-features-container {
@@ -601,6 +615,7 @@
         
         .chrome-browser-mockup .chrome-card-title {
             color: white;
+            font-size: 2.25rem !important;
         }
         
         .chrome-card-description {
@@ -1506,6 +1521,35 @@
             }
         }
         
+        /* Анимация карточек */
+        .card-front, .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: var(--space-8);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-front {
+            transform: translateY(0);
+        }
+        
+        .card-back {
+            transform: translateY(100%);
+        }
+        
+        .chrome-card.expanded .card-front {
+            transform: translateY(-100%);
+        }
+        
+        .chrome-card.expanded .card-back {
+            transform: translateY(0);
+        }
+        
         /* Размеры шрифтов для карточек в Features */
         .card-large-text .chrome-card-title {
             font-size: 3rem !important;
@@ -1591,37 +1635,85 @@
                 <div class="chrome-cards-grid">
                     <!-- Card 1: Password Manager -->
                     <div class="chrome-card blue card-medium-text">
-                        <div class="chrome-card-header">Безопасность документов</div>
-                        <h3 class="chrome-card-title">Используйте защищенное хранение документов на всех этапах регистрации.</h3>
-                        <div class="chrome-card-footer">
-                            <div class="chrome-card-plus">+</div>
+                        <!-- Основной слой -->
+                        <div class="card-front">
+                            <div class="chrome-card-header">Безопасность документов</div>
+                            <h3 class="chrome-card-title">Используйте защищенное хранение документов на всех этапах регистрации.</h3>
+                            <div class="chrome-card-footer">
+                                <div class="chrome-card-plus">+</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Расширенный слой -->
+                        <div class="card-back">
+                            <div class="chrome-card-header">Безопасность документов</div>
+                            <h3 class="chrome-card-title">Полная защита конфиденциальных данных с использованием современных методов шифрования и безопасного хранения.</h3>
+                            <div class="chrome-card-footer">
+                                <div class="chrome-card-plus close-btn">×</div>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- Card 2: Security Check -->
                     <div class="chrome-card light-gray card-large-text">
-                        <div class="chrome-card-header">Проверка соответствия</div>
-                        <h3 class="chrome-card-title">Проверяйте соответствие требованиям реестра в режиме реального времени.</h3>
-                        <div class="chrome-card-footer">
-                            <div class="chrome-card-plus">+</div>
+                        <!-- Основной слой -->
+                        <div class="card-front">
+                            <div class="chrome-card-header">Проверка соответствия</div>
+                            <h3 class="chrome-card-title">Проверяйте соответствие требованиям реестра в режиме реального времени.</h3>
+                            <div class="chrome-card-footer">
+                                <div class="chrome-card-plus">+</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Расширенный слой -->
+                        <div class="card-back">
+                            <div class="chrome-card-header">Проверка соответствия</div>
+                            <h3 class="chrome-card-title">Автоматическая система проверки документов на соответствие всем требованиям Минцифры с мгновенным уведомлением о результатах.</h3>
+                            <div class="chrome-card-footer">
+                                <div class="chrome-card-plus close-btn">×</div>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- Card 3: Safe Browsing -->
                     <div class="chrome-card white card-large-text">
-                        <div class="chrome-card-header">Защищенный процесс</div>
-                        <h3 class="chrome-card-title">Будьте уверены в защите от ошибок при подаче документов.</h3>
-                        <div class="chrome-card-footer">
-                            <div class="chrome-card-plus">+</div>
+                        <!-- Основной слой -->
+                        <div class="card-front">
+                            <div class="chrome-card-header">Защищенный процесс</div>
+                            <h3 class="chrome-card-title">Будьте уверены в защите от ошибок при подаче документов.</h3>
+                            <div class="chrome-card-footer">
+                                <div class="chrome-card-plus">+</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Расширенный слой -->
+                        <div class="card-back">
+                            <div class="chrome-card-header">Защищенный процесс</div>
+                            <h3 class="chrome-card-title">Многоуровневая система контроля качества с автоматическим выявлением и исправлением ошибок до подачи заявки.</h3>
+                            <div class="chrome-card-footer">
+                                <div class="chrome-card-plus close-btn">×</div>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- Card 4: Privacy Guide -->
                     <div class="chrome-card dark-blue card-medium-text">
-                        <div class="chrome-card-header">Руководство по конфиденциальности</div>
-                        <h3 class="chrome-card-title">Управляйте конфиденциальностью с помощью удобных настроек.</h3>
-                        <div class="chrome-card-footer">
-                            <div class="chrome-card-plus">+</div>
+                        <!-- Основной слой -->
+                        <div class="card-front">
+                            <div class="chrome-card-header">Руководство по конфиденциальности</div>
+                            <h3 class="chrome-card-title">Управляйте конфиденциальностью с помощью удобных настроек.</h3>
+                            <div class="chrome-card-footer">
+                                <div class="chrome-card-plus">+</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Расширенный слой -->
+                        <div class="card-back">
+                            <div class="chrome-card-header">Руководство по конфиденциальности</div>
+                            <h3 class="chrome-card-title">Полный контроль над доступом к вашим данным с возможностью настройки уровня конфиденциальности для каждого этапа регистрации.</h3>
+                            <div class="chrome-card-footer">
+                                <div class="chrome-card-plus close-btn">×</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1940,6 +2032,22 @@
                 // Открываем текущий FAQ если он не был активен
                 if (!isActive) {
                     faqItem.classList.add('active');
+                }
+            });
+        });
+        
+        // Card animation functionality
+        document.querySelectorAll('.chrome-card-plus').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = e.target.closest('.chrome-card');
+                
+                if (button.classList.contains('close-btn')) {
+                    // Закрыть карточку
+                    card.classList.remove('expanded');
+                } else {
+                    // Открыть карточку
+                    card.classList.add('expanded');
                 }
             });
         });
