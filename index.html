@@ -1197,7 +1197,7 @@
         }
         
         .faq-item.active .faq-answer {
-            max-height: 200px;
+            max-height: none;
             padding: var(--space-2) var(--space-5) var(--space-4);
         }
         
@@ -1217,6 +1217,10 @@
                 padding: var(--space-3) var(--space-4);
             }
             
+            .faq-question h3 {
+                font-size: 1.5rem;
+                line-height: 1.75rem;
+            }
             
             .faq-answer {
                 padding: 0 var(--space-4) 0;
@@ -1224,6 +1228,7 @@
             
             .faq-item.active .faq-answer {
                 padding: var(--space-2) var(--space-4) var(--space-3);
+                max-height: none;
             }
         }
         
