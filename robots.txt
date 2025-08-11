@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://layer2tom-design.github.io/reestr/sitemap.xml
+
+# Allow indexing of main content
+Allow: /*.html
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+
+# Yandex specific
+User-agent: Yandex
+Allow: /
+
+# Google specific  
+User-agent: Googlebot
+Allow: /
+
+# Disallow any private directories (if any)
+# Disallow: /private/
+
+# Crawl delay for all bots (optional)
+Crawl-delay: 1
