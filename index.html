@@ -1005,6 +1005,85 @@
         .action-button-cancel:hover {
             color: var(--custom-button-red-hover);
         }
+        
+        /* Contact Methods Container */
+        .contact-methods-container {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--space-8);
+            align-items: flex-start;
+        }
+        
+        /* Telegram QR Code Styles */
+        .telegram-qr-container {
+            text-align: center;
+            background: var(--custom-bg-white);
+            border-radius: var(--md-sys-shape-corner-large);
+            padding: var(--space-6);
+            box-shadow: var(--md-sys-elevation-level2);
+            border: 1px solid var(--custom-border-light);
+            min-width: 280px;
+            margin: var(--space-3) 0;
+            align-self: flex-start;
+        }
+        
+        .qr-title {
+            font-family: "Google Sans", Arial, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--custom-text-primary);
+            margin-bottom: var(--space-4);
+            line-height: 1.3;
+        }
+        
+        .qr-code-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .telegram-qr-code {
+            width: 200px;
+            height: 200px;
+            border-radius: var(--md-sys-shape-corner-small);
+            box-shadow: var(--md-sys-elevation-level1);
+        }
+        
+        .qr-description {
+            font-family: "Google Sans Text", Arial, sans-serif;
+            font-size: 0.875rem;
+            color: var(--custom-text-secondary);
+            text-align: center;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .telegram-link {
+            color: var(--custom-link-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .telegram-link:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-methods-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+            
+            .telegram-qr-container {
+                margin-top: var(--space-4);
+            }
+            
+            .telegram-qr-code {
+                width: 160px;
+                height: 160px;
+            }
+        }
         /* Why Choose Us Section */
         .why-choose-us-section {
             background: transparent;
@@ -1813,7 +1892,9 @@
         <div class="section-content">
             <h2 class="section-title">Получить консультацию</h2>
             
-            <!-- Terminal -->
+            <!-- Contact Methods Container -->
+            <div class="contact-methods-container">
+                <!-- Terminal -->
         <div class="terminal">
             <div class="terminal-header">
                 <div class="terminal-button close-button"></div>
@@ -1852,7 +1933,16 @@
                 
             </div>
         </div>
-        
+                
+                <!-- Telegram QR Code -->
+                <div class="telegram-qr-container">
+                    <h3 class="qr-title">Или напишите нам в Telegram</h3>
+                    <div class="qr-code-wrapper">
+                        <img src="telegram-qr-code.png" alt="QR код для связи в Telegram" class="telegram-qr-code" />
+                        <p class="qr-description">Отсканируйте QR код или <a href="https://t.me/lexcloud_support_bot" target="_blank" class="telegram-link">перейдите по ссылке</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
