@@ -19,6 +19,19 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/103769302" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-89B5FWDCYL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-89B5FWDCYL', {
+            'debug_mode': false,
+            'send_page_view': true
+        });
+    </script>
+    <!-- /Google Analytics 4 -->
+    
     <!-- SEO Meta Tags -->
     <meta name="description" content="LexCloud - профессиональные юридические услуги по регистрации программного обеспечения в Реестре российского ПО Минцифры. 7 лет экспертизы, 95% успешных регистраций. Быстро, безопасно, надежно.">
     <meta name="keywords" content="регистрация ПО, реестр российского ПО, минцифры, программное обеспечение, юридические услуги, LexCloud, регистрация программ, российский реестр ПО">
@@ -2143,6 +2156,15 @@
                         ym(103769302, 'reachGoal', 'form_submit');
                     }
                     
+                    // Отслеживание цели в Google Analytics
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'engagement',
+                            'event_label': 'contact_form',
+                            'value': 1
+                        });
+                    }
+                    
                 } else {
                     // EmailJS not configured
                     showTerminalMessage('📧 Форма настроена! (Необходимо добавить ключи EmailJS)');
@@ -2326,6 +2348,15 @@
                     if (typeof ym !== 'undefined') {
                         ym(103769302, 'reachGoal', 'telegram_qr_click');
                     }
+                    
+                    // Отслеживание в Google Analytics
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'click', {
+                            'event_category': 'engagement',
+                            'event_label': 'telegram_qr',
+                            'value': 1
+                        });
+                    }
                 });
             }
             
@@ -2335,6 +2366,15 @@
                 telegramLink.addEventListener('click', function() {
                     if (typeof ym !== 'undefined') {
                         ym(103769302, 'reachGoal', 'telegram_link_click');
+                    }
+                    
+                    // Отслеживание в Google Analytics
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'click', {
+                            'event_category': 'engagement',
+                            'event_label': 'telegram_link',
+                            'value': 1
+                        });
                     }
                 });
             }
