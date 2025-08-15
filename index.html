@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LexCloud - Регистрация ПО в Реестре Минцифры | Юридические услуги</title>
     
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=103769302', 'ym');
+
+        ym(103769302, 'init', {ssr:true, webvisor:true, trackHash:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103769302" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
     <!-- SEO Meta Tags -->
     <meta name="description" content="LexCloud - профессиональные юридические услуги по регистрации программного обеспечения в Реестре российского ПО Минцифры. 7 лет экспертизы, 95% успешных регистраций. Быстро, безопасно, надежно.">
     <meta name="keywords" content="регистрация ПО, реестр российского ПО, минцифры, программное обеспечение, юридические услуги, LexCloud, регистрация программ, российский реестр ПО">
@@ -1734,6 +1748,7 @@
         }
         
     </style>
+
 </head>
 <body>
     <!-- Floating Navigation -->
@@ -1999,8 +2014,8 @@
                 <div class="telegram-qr-container">
                     <h3 class="qr-title">Или напишите нам в Telegram</h3>
                     <div class="qr-code-wrapper">
-                        <img src="telegram-qr-code.png" alt="QR код для связи с юристами LexCloud в Telegram - регистрация ПО в реестре Минцифры" class="telegram-qr-code" />
-                        <p class="qr-description">Отсканируйте QR код или <a href="https://t.me/lexcloud_support_bot" target="_blank" class="telegram-link">перейдите по ссылке</a></p>
+                        <img src="telegram-qr-code.png" alt="QR код для связи с юристами LexCloud в Telegram - регистрация ПО в реестре Минцифры" class="telegram-qr-code" id="telegramQr" />
+                        <p class="qr-description">Отсканируйте QR код или <a href="https://t.me/lexcloud_support_bot" target="_blank" class="telegram-link" id="telegramLink">перейдите по ссылке</a></p>
                     </div>
                 </div>
             </div>
@@ -2011,6 +2026,18 @@
     <footer class="footer">
         <div class="section-content">
             <p>© 2021 LexClaude. Все права защищены.</p>
+            
+            <!-- Yandex.Metrika informer -->
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="https://metrika.yandex.ru/stat/?id=103769302&amp;from=informer" target="_blank" rel="nofollow">
+                    <img src="https://informer.yandex.ru/informer/103769302/3_0_FFFFFFFF_EFEFEFFF_0_pageviews"
+                         style="width:88px; height:31px; border:0;"
+                         alt="Яндекс.Метрика"
+                         title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
+                        />
+                </a>
+            </div>
+            <!-- /Yandex.Metrika informer -->
         </div>
     </footer>
     
@@ -2111,6 +2138,11 @@
                     
                     // Show success message
                     showTerminalMessage('✅ Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+                    
+                    // Отслеживание цели в Яндекс.Метрике
+                    if (typeof ym !== 'undefined') {
+                        ym(103769302, 'reachGoal', 'form_submit');
+                    }
                     
                 } else {
                     // EmailJS not configured
@@ -2285,6 +2317,29 @@
             window.history.replaceState(null, null, window.location.pathname);
             window.scrollTo(0, 0);
         }
+
+        // Функция для инициализации отслеживания Telegram кликов
+        function initTelegramTracking() {
+            // Отслеживание клика по QR коду
+            const telegramQr = document.getElementById('telegramQr');
+            if (telegramQr) {
+                telegramQr.addEventListener('click', function() {
+                    if (typeof ym !== 'undefined') {
+                        ym(103769302, 'reachGoal', 'telegram_qr_click');
+                    }
+                });
+            }
+            
+            // Отслеживание клика по ссылке Telegram
+            const telegramLink = document.getElementById('telegramLink');
+            if (telegramLink) {
+                telegramLink.addEventListener('click', function() {
+                    if (typeof ym !== 'undefined') {
+                        ym(103769302, 'reachGoal', 'telegram_link_click');
+                    }
+                });
+            }
+        }
         
         // Initialize on page load - multiple event handlers for Safari compatibility
         document.addEventListener('DOMContentLoaded', () => {
@@ -2300,6 +2355,9 @@
                     window.scrollTo(0, 0);
                 }
             }, 10);
+            
+            // Инициализация отслеживания Telegram кликов
+            initTelegramTracking();
         });
         
         window.addEventListener('load', () => {
