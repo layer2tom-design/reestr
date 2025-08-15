@@ -2028,12 +2028,14 @@
             <p>© 2021 LexClaude. Все права защищены.</p>
             
             <!-- Yandex.Metrika informer -->
-            <div style="margin-top: 16px; text-align: center;">
-                <a href="https://metrika.yandex.ru/stat/?id=103769302&amp;from=informer" target="_blank" rel="nofollow">
+            <div style="margin-top: 24px; text-align: center; padding: 16px; background-color: rgba(0,0,0,0.05); border-radius: 8px;">
+                <p style="margin: 0 0 8px 0; font-size: 12px; color: #666;">Статистика сайта:</p>
+                <a href="https://metrika.yandex.ru/stat/?id=103769302&amp;from=informer" target="_blank" rel="nofollow" id="metrikaInformer">
                     <img src="https://informer.yandex.ru/informer/103769302/3_0_FFFFFFFF_EFEFEFFF_0_pageviews"
-                         style="width:88px; height:31px; border:0;"
+                         style="width:88px; height:31px; border:1px solid #ccc; display: block; margin: 0 auto;"
                          alt="Яндекс.Метрика"
                          title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
+                         onerror="this.style.display='none'; document.getElementById('metrikaInformer').style.pointerEvents='none'; document.getElementById('metrikaInformer').innerHTML='<span style=&quot;font-size:12px;color:#999;cursor:default;&quot;>Статистика загружается...</span>'"
                         />
                 </a>
             </div>
