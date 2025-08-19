@@ -27,7 +27,18 @@
         gtag('js', new Date());
         gtag('config', 'G-89B5FWDCYL', {
             'debug_mode': false,
-            'send_page_view': true
+            'send_page_view': true,
+            'enhanced_conversions': true,
+            'allow_enhanced_conversions': true,
+            'cookie_expires': 7776000, // 90 дней
+            'custom_map': {
+                'custom_parameter_1': 'lead_type',
+                'custom_parameter_2': 'service_category'
+            },
+            'user_properties': {
+                'visitor_type': 'business',
+                'service_interest': 'software_registration'
+            }
         });
     </script>
     <!-- /Google Analytics 4 -->
@@ -37,7 +48,7 @@
     <meta name="keywords" content="регистрация ПО, реестр российского ПО, минцифры, программное обеспечение, юридические услуги, LexCloud, регистрация программ, российский реестр ПО">
     <meta name="author" content="LexCloud">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://layer2tom-design.github.io/reestr/">
+    <link rel="canonical" href="https://www.mincifrareestr.ru/">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="LexCloud - Регистрация ПО в Реестре Минцифры">
@@ -51,7 +62,7 @@
     <meta property="og:image:height" content="200">
     
     <!-- Yandex Metrika Tags -->
-    <meta name="yandex-verification" content="">
+    <meta name="yandex-verification" content="709dd96f55d7b85b">
     <meta name="format-detection" content="telephone=no">
     
     <!-- Favicon and Icons -->
@@ -154,10 +165,161 @@
           }
         }
       ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Как зарегистрировать программное обеспечение в Реестре российского ПО",
+      "description": "Пошаговое руководство по регистрации ПО в Реестре Минцифры с юридическим сопровождением",
+      "totalTime": "P45D",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "RUB",
+        "value": "150000"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Бесплатная консультация",
+          "text": "Получите экспертную оценку готовности вашего ПО к регистрации",
+          "position": 1
+        },
+        {
+          "@type": "HowToStep", 
+          "name": "Аудит документов",
+          "text": "Проведем полный аудит имеющихся документов и составим список недостающих",
+          "position": 2
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Подготовка заявки",
+          "text": "Подготовим полный пакет документов и заявку в соответствии с требованиями Минцифры",
+          "position": 3
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Сопровождение регистрации",
+          "text": "Подадим заявку и обеспечим взаимодействие с экспертами до получения свидетельства",
+          "position": 4
+        }
+      ],
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Портал Минцифры России"
+        },
+        {
+          "@type": "HowToTool", 
+          "name": "Электронная цифровая подпись"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Юридическое сопровождение LexCloud"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.mincifrareestr.ru/#localbusiness",
+      "name": "LexCloud - Регистрация ПО в Реестре",
+      "image": "https://www.mincifrareestr.ru/telegram-qr-code.png",
+      "description": "Юридические услуги по регистрации программного обеспечения в Реестре российского ПО Минцифры",
+      "url": "https://www.mincifrareestr.ru/",
+      "telephone": "+7-XXX-XXX-XXXX",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "RU",
+        "addressRegion": "Россия"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "55.7558",
+        "longitude": "37.6176"
+      },
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Россия"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://www.mincifrareestr.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги",
+          "item": "https://www.mincifrareestr.ru/#features"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "FAQ",
+          "item": "https://www.mincifrareestr.ru/#faq"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Контакты",
+          "item": "https://www.mincifrareestr.ru/#contact"
+        }
+      ]
     }]
     </script>
     
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://mc.yandex.ru">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Text:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Critical CSS for above-the-fold content -->
+    <style id="critical-css">
+        body { 
+            font-family: "Google Sans Text", arial, sans-serif; 
+            margin: 0; 
+            background: #fdfcff; 
+        }
+        .section-hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            background: #ffffff; 
+        }
+        .main-title h1 { 
+            font-size: 4.5rem; 
+            font-weight: 700; 
+            text-align: center; 
+            color: #212225; 
+            margin: 0;
+        }
+        .hero-cta { 
+            text-align: center; 
+            margin-top: 2rem; 
+        }
+        .hero-cta-button { 
+            background: #1b72e8; 
+            color: #ffffff; 
+            padding: 18px 32px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-size: 1.125rem; 
+            font-weight: 600; 
+            display: inline-block;
+        }
+    </style>
+    
     <style>
         * {
             margin: 0;
@@ -721,6 +883,61 @@
             line-height: 1.6875rem;
             letter-spacing: 0rem;
             font-family: "Google Sans Text", arial, sans-serif;
+        }
+        
+        /* Hero CTA Styles */
+        .hero-cta {
+            text-align: center;
+            margin-top: var(--space-6);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--custom-nav-cta-bg);
+            color: var(--custom-nav-cta-text);
+            font-family: "Google Sans", arial, sans-serif;
+            font-size: 1.125rem;
+            font-weight: 600;
+            padding: 18px 32px;
+            border-radius: var(--md-sys-shape-corner-full);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            min-height: 56px;
+            box-shadow: var(--md-sys-elevation-level1);
+            transition: all var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard);
+            margin-bottom: var(--space-3);
+        }
+        
+        .hero-cta-button:hover {
+            background: var(--custom-nav-cta-hover);
+            box-shadow: var(--md-sys-elevation-level2);
+            transform: translateY(-2px);
+            color: var(--custom-nav-cta-text);
+        }
+        
+        .hero-cta-button:focus {
+            outline: 3px solid var(--custom-nav-cta-bg);
+            outline-offset: 2px;
+        }
+        
+        .hero-cta-button:active {
+            background: var(--custom-nav-cta-hover);
+            transform: translateY(0);
+            box-shadow: var(--md-sys-elevation-level1);
+        }
+        
+        .cta-support {
+            font-size: 1rem;
+            color: var(--custom-text-secondary);
+            margin: 0;
+            font-family: "Google Sans Text", arial, sans-serif;
+            line-height: 1.5;
         }
         
         /* Chrome Features Section */
@@ -1658,6 +1875,25 @@
                 max-width: 100%;
             }
             
+            /* Hero CTA mobile styles */
+            .hero-cta {
+                margin-top: var(--space-5);
+                padding: 0 var(--space-4);
+            }
+            
+            .hero-cta-button {
+                font-size: 1rem;
+                padding: 16px 24px;
+                min-height: 48px;
+                width: 100%;
+                max-width: 320px;
+            }
+            
+            .cta-support {
+                font-size: 0.875rem;
+                padding: 0 var(--space-2);
+            }
+            
             .section-title {
                 font-size: 2.25rem;
                 line-height: 2.75rem;
@@ -1837,6 +2073,14 @@
                     Минцифры</strong>
                 </h1>
                 <p class="subtitle">Опыт регистрации программного обеспечения в Реестре Минцифры с 2021 года</p>
+                
+                <!-- Hero CTA Button -->
+                <div class="hero-cta">
+                    <a href="#contact" class="hero-cta-button primary-cta-button" onclick="scrollToSection('contact', event)">
+                        Получить БЕСПЛАТНУЮ консультацию за 15 минут
+                    </a>
+                    <p class="cta-support">Узнайте стоимость и сроки регистрации для вашего ПО</p>
+                </div>
             </div>
         </div>
     </section>
@@ -2074,7 +2318,7 @@
                 <div class="telegram-qr-container">
                     <h3 class="qr-title">Или напишите в наш Telegram канал</h3>
                     <div class="qr-code-wrapper">
-                        <img src="telegram-qr-code.png" alt="QR код для связи с юристами LexCloud в Telegram канале @ht_lkn - регистрация ПО в реестре Минцифры" class="telegram-qr-code" id="telegramQr" />
+                        <img src="telegram-qr-code.png" alt="QR код для связи с юристами LexCloud в Telegram канале @ht_lkn - регистрация ПО в реестре Минцифры" class="telegram-qr-code" id="telegramQr" loading="lazy" decoding="async" width="200" height="200" />
                         <p class="qr-description">Отсканируйте QR код или <a href="https://t.me/ht_lkn" target="_blank" class="telegram-link" id="telegramLink">перейдите по ссылке</a></p>
                     </div>
                 </div>
@@ -2195,12 +2439,35 @@
                         ym(103769302, 'reachGoal', 'form_submit');
                     }
                     
-                    // Отслеживание цели в Google Analytics
+                    // Отслеживание цели в Google Analytics с Enhanced Ecommerce
                     if (typeof gtag !== 'undefined') {
                         gtag('event', 'generate_lead', {
                             'event_category': 'engagement',
                             'event_label': 'contact_form',
-                            'value': 1
+                            'value': 1,
+                            'currency': 'RUB',
+                            'items': [{
+                                'item_id': 'lead_registration_software',
+                                'item_name': 'Заявка на регистрацию ПО',
+                                'item_category': 'Юридические услуги',
+                                'item_category2': 'Регистрация ПО',
+                                'price': 50000, // Средняя стоимость услуги
+                                'quantity': 1
+                            }]
+                        });
+                        
+                        // Дополнительное событие для воронки
+                        gtag('event', 'begin_checkout', {
+                            'event_category': 'ecommerce',
+                            'currency': 'RUB',
+                            'value': 50000,
+                            'items': [{
+                                'item_id': 'lead_registration_software',
+                                'item_name': 'Заявка на регистрацию ПО',
+                                'item_category': 'Юридические услуги',
+                                'price': 50000,
+                                'quantity': 1
+                            }]
                         });
                     }
                     
@@ -2419,6 +2686,138 @@
             }
         }
         
+        // Расширенное отслеживание взаимодействий
+        function trackEngagementEvents() {
+            // Отслеживание времени на странице
+            let timeOnPage = 0;
+            const timeTracking = setInterval(() => {
+                timeOnPage += 10;
+                
+                // Отправляем события времени на странице
+                if (timeOnPage === 30) { // 30 секунд
+                    if (typeof ym !== 'undefined') {
+                        ym(103769302, 'reachGoal', 'time_30_seconds');
+                    }
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'engagement_time', {
+                            'event_category': 'engagement',
+                            'event_label': '30_seconds',
+                            'value': 30
+                        });
+                    }
+                } else if (timeOnPage === 60) { // 1 минута
+                    if (typeof ym !== 'undefined') {
+                        ym(103769302, 'reachGoal', 'time_1_minute');
+                    }
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'engagement_time', {
+                            'event_category': 'engagement',
+                            'event_label': '1_minute',
+                            'value': 60
+                        });
+                    }
+                } else if (timeOnPage === 180) { // 3 минуты
+                    if (typeof ym !== 'undefined') {
+                        ym(103769302, 'reachGoal', 'time_3_minutes');
+                    }
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'engagement_time', {
+                            'event_category': 'engagement',
+                            'event_label': '3_minutes',
+                            'value': 180
+                        });
+                    }
+                    clearInterval(timeTracking);
+                }
+            }, 10000); // Проверяем каждые 10 секунд
+            
+            // Отслеживание глубины скроллинга
+            let maxScrollDepth = 0;
+            const scrollMilestones = [25, 50, 75, 100];
+            const triggeredMilestones = [];
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+                
+                if (scrollPercent > maxScrollDepth) {
+                    maxScrollDepth = scrollPercent;
+                    
+                    scrollMilestones.forEach(milestone => {
+                        if (scrollPercent >= milestone && !triggeredMilestones.includes(milestone)) {
+                            triggeredMilestones.push(milestone);
+                            
+                            // Яндекс.Метрика
+                            if (typeof ym !== 'undefined') {
+                                ym(103769302, 'reachGoal', `scroll_${milestone}_percent`);
+                            }
+                            
+                            // Google Analytics
+                            if (typeof gtag !== 'undefined') {
+                                gtag('event', 'scroll_depth', {
+                                    'event_category': 'engagement',
+                                    'event_label': `${milestone}_percent`,
+                                    'value': milestone
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+            
+            // Отслеживание кликов по важным элементам
+            const trackableElements = [
+                { selector: 'a[href^="tel:"]', goal: 'phone_click', label: 'phone' },
+                { selector: 'a[href^="mailto:"]', goal: 'email_click', label: 'email' },
+                { selector: '.section-title', goal: 'section_title_click', label: 'section_navigation' },
+                { selector: '.floating-nav a', goal: 'nav_click', label: 'navigation' },
+                { selector: '.chrome-card', goal: 'service_card_click', label: 'service_interaction' }
+            ];
+            
+            trackableElements.forEach(element => {
+                document.querySelectorAll(element.selector).forEach(el => {
+                    el.addEventListener('click', () => {
+                        // Яндекс.Метрика
+                        if (typeof ym !== 'undefined') {
+                            ym(103769302, 'reachGoal', element.goal);
+                        }
+                        
+                        // Google Analytics
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'click', {
+                                'event_category': 'engagement',
+                                'event_label': element.label,
+                                'value': 1
+                            });
+                        }
+                    });
+                });
+            });
+            
+            // Отслеживание попыток покинуть страницу
+            let exitIntentTriggered = false;
+            document.addEventListener('mouseleave', (e) => {
+                if (e.clientY <= 0 && !exitIntentTriggered) {
+                    exitIntentTriggered = true;
+                    
+                    // Яндекс.Метрика
+                    if (typeof ym !== 'undefined') {
+                        ym(103769302, 'reachGoal', 'exit_intent');
+                    }
+                    
+                    // Google Analytics
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'exit_intent', {
+                            'event_category': 'engagement',
+                            'event_label': 'mouse_leave',
+                            'value': 1
+                        });
+                    }
+                }
+            });
+        }
+
         // Initialize on page load - multiple event handlers for Safari compatibility
         document.addEventListener('DOMContentLoaded', () => {
             // Force scroll to top for Safari
@@ -2433,6 +2832,9 @@
                     window.scrollTo(0, 0);
                 }
             }, 10);
+            
+            // Инициализация расширенного отслеживания
+            trackEngagementEvents();
             
             // Инициализация отслеживания Telegram кликов
             initTelegramTracking();
